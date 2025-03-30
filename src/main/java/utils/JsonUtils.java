@@ -52,6 +52,7 @@ public class JsonUtils {
                 StandardOpenOption.WRITE);
     }
 
+    //apagar
     public static void loadJsonAccountsIntoTable(JTable clientsTable) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         DefaultTableModel clientsTableModel = (DefaultTableModel) clientsTable.getModel();
@@ -104,6 +105,28 @@ public class JsonUtils {
 
         refreshAccountsTable(clientsTable);
     }
+
+//    public static void updateAccountInJson(String cpf, JTable clientsTable) throws IOException {
+//        ObjectMapper mapper = new ObjectMapper();
+//
+//        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+//
+//        Path fileLocation = Paths.get("C:\\data-java-project\\file.json");
+//        Files.createDirectories(fileLocation.getParent());
+//
+//        String content = Files.readString(fileLocation);
+//
+//        List<BankAccount> accounts = new ArrayList<>();
+//        accounts = mapper.readValue(content, new TypeReference<List<BankAccount>>() {
+//        });
+//
+//        for (int i = 0; i < accounts.size(); i++) {
+//            if (accounts.get(i).getCpf().equals(cpf)) {
+//                accounts.remove(i);
+//                break;
+//            }
+//        }
+//    }
 
     public static void refreshAccountsTable(JTable clientsTable) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
