@@ -18,7 +18,7 @@ import utils.JsonUtils;
 import src.UpdateAccountDialog;
 
 public class MenuScreen extends javax.swing.JFrame {
-    
+
     public static int client_id;
 
     public static String name;
@@ -396,8 +396,9 @@ public class MenuScreen extends javax.swing.JFrame {
                         if (confirmDelete == JOptionPane.YES_OPTION) {
                             try {
                                 model.removeRow(row);
-                                JsonUtils.deleteAccountFromJson(client_id, clientsTable);
+                                JsonUtils.deleteAccountFromJson(client_id);
                                 JOptionPane.showMessageDialog(null, "USUÁRIO EXCLUÍDO COM SUCESSO!", "Operação concluída", JOptionPane.INFORMATION_MESSAGE);
+                                JsonUtils.refreshTableAccounts(clientsTable);
                             } catch (IOException ex) {
                                 JOptionPane.showMessageDialog(null, "ERRO");
                                 throw new RuntimeException(ex);
@@ -412,7 +413,7 @@ public class MenuScreen extends javax.swing.JFrame {
                 JMenuItem updateItem = new JMenuItem("Editar");
                 updateItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        int clientId= (Integer) clientsTable.getValueAt(row, 0);
+                        int clientId = (Integer) clientsTable.getValueAt(row, 0);
 
                         ClientAccount client = null;
 

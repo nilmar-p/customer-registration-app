@@ -58,7 +58,22 @@ public class JsonUtils {
                 StandardOpenOption.WRITE);
     }
 
-    public static void deleteAccountFromJson(int client_id, JTable clientsTable) throws IOException {
+    public static boolean isValidCpf(String cpf) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        List<ClientAccount> accounts = mapper.readValue(new File("C:\\data-java-project\\file.json"), new TypeReference<List<ClientAccount>>() {
+        });
+
+        for (ClientAccount account : accounts) {
+            if (account.getCpf().equals(cpf)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void deleteAccountFromJson(int client_id) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -80,11 +95,10 @@ public class JsonUtils {
         }
 
         String json = mapper.writeValueAsString(accounts);
-
         Files.write(fileLocation, json.getBytes(StandardCharsets.UTF_8),
+                StandardOpenOption.CREATE,
+                StandardOpenOption.TRUNCATE_EXISTING,
                 StandardOpenOption.WRITE);
-
-        refreshTableAccounts(clientsTable);
     }
 
     public static void updateAccountInJson(ClientAccount updatedClient) throws IOException {
@@ -101,14 +115,14 @@ public class JsonUtils {
             accounts = mapper.readValue(content, new TypeReference<List<ClientAccount>>() {
             });
         }
-        
+
         for (ClientAccount account : accounts) {
             if (updatedClient.getClient_id() == account.getClient_id()) {
                 account.setName(updatedClient.getName());
                 account.setCpf(updatedClient.getCpf());
                 account.setEmail(updatedClient.getEmail());
                 account.setPhone(updatedClient.getPhone());
-                
+
                 account.setStreet(updatedClient.getStreet());
                 account.setNeighborhood(updatedClient.getNeighborhood());
                 account.setHouseNumber(updatedClient.getHouseNumber());
@@ -139,21 +153,6 @@ public class JsonUtils {
             clientsTableModel.addRow(accountA);
 
         }
-    }
-
-    public static boolean isValidCpf(String cpf) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-
-        List<ClientAccount> accounts = mapper.readValue(new File("C:\\data-java-project\\file.json"), new TypeReference<List<ClientAccount>>() {
-        });
-
-        for (ClientAccount account : accounts) {
-            if (account.getCpf().equals(cpf)) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     public static ClientAccount returnRowClientObject(int client_id) throws IOException {
