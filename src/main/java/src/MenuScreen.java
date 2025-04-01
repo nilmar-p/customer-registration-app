@@ -13,20 +13,31 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-import model.BankAccount;
-import model.CurrentAccount;
-import model.SavingsAccount;
+import model.ClientAccount;
 import utils.JsonUtils;
+import src.UpdateAccountDialog;
 
 public class MenuScreen extends javax.swing.JFrame {
+    
+    public static int client_id;
 
-    /**
-     * Creates new form menuScreen
-     */
+    public static String name;
+    public static String cpf;
+    public static String email;
+    public static String phone;
+
+    public static String gender;
+
+    public static String street;
+    public static String neighborhood;
+    public static String houseNumber;
+    public static String cep;
+    public static String city;
+
     public MenuScreen() {
         initComponents();
+        setLocationRelativeTo(null);
 
-        //criar metodo para simplificar isso
         Path fileLocation = Paths.get("C:\\data-java-project\\file.json");
         try {
             Files.createDirectories(fileLocation.getParent());
@@ -37,12 +48,11 @@ public class MenuScreen extends javax.swing.JFrame {
 
         if (Files.exists(fileLocation)) {
             try {
-                JsonUtils.loadJsonAccountsIntoTable(clientsTable);
+                JsonUtils.refreshTableAccounts(clientsTable);
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "ERRO AO CARREGAR CONTAS!" + e);
             }
         }
-        //typeField.setSelectedIndex(-1);
     }
 
     /**
@@ -62,32 +72,30 @@ public class MenuScreen extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        clientGender = new javax.swing.JComboBox<>();
+        clientLabel4 = new javax.swing.JLabel();
+        clienteLabel3 = new javax.swing.JLabel();
+        clientPhone = new javax.swing.JTextField();
+        clientEmail = new javax.swing.JTextField();
+        clientLabel2 = new javax.swing.JLabel();
+        clienteLabel1 = new javax.swing.JLabel();
+        clientCPF = new javax.swing.JTextField();
+        clientName = new javax.swing.JTextField();
+        clientLabel = new javax.swing.JLabel();
+        clientLabel5 = new javax.swing.JLabel();
+        clientStreet = new javax.swing.JTextField();
+        clientNeighborhood = new javax.swing.JTextField();
+        clientLabel7 = new javax.swing.JLabel();
+        clientHouseNumber = new javax.swing.JTextField();
+        clientCEP = new javax.swing.JTextField();
+        clientLabel6 = new javax.swing.JLabel();
+        clientLabel8 = new javax.swing.JLabel();
+        clientLabel9 = new javax.swing.JLabel();
+        clientCity = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(850, 700));
         setMinimumSize(new java.awt.Dimension(850, 700));
-        setPreferredSize(new java.awt.Dimension(850, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -97,7 +105,7 @@ public class MenuScreen extends javax.swing.JFrame {
 
             },
             new String [] {
-                "N°", "Nome", "CPF", "Tipo", "Ação"
+                "ID", "Nome", "CPF", "E-mail", "Cidade"
             }
         ) {
             Class[] types = new Class [] {
@@ -128,8 +136,8 @@ public class MenuScreen extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(clientsTable);
         if (clientsTable.getColumnModel().getColumnCount() > 0) {
-            clientsTable.getColumnModel().getColumn(0).setMinWidth(45);
-            clientsTable.getColumnModel().getColumn(0).setMaxWidth(45);
+            clientsTable.getColumnModel().getColumn(0).setMinWidth(50);
+            clientsTable.getColumnModel().getColumn(0).setMaxWidth(50);
             clientsTable.getColumnModel().getColumn(1).setResizable(false);
             clientsTable.getColumnModel().getColumn(2).setResizable(false);
             clientsTable.getColumnModel().getColumn(3).setResizable(false);
@@ -166,55 +174,78 @@ public class MenuScreen extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, 80, 35));
 
-        jComboBox1.setBackground(new java.awt.Color(30, 136, 229));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Tipo");
-
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Número");
-
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        clientGender.setBackground(new java.awt.Color(30, 136, 229));
+        clientGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feminino", "Masculino" }));
+        clientGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                clientGenderActionPerformed(evt);
             }
         });
 
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("E-mail");
+        clientLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientLabel4.setText("Sexo");
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("CPF");
+        clienteLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clienteLabel3.setText("Número");
 
-        jLabel10.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Nome");
-
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Rua");
-
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("N°");
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        clientPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                clientPhoneActionPerformed(evt);
             }
         });
 
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Bairro");
-
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("CEP");
-
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Cidade");
-
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        clientEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                clientEmailActionPerformed(evt);
+            }
+        });
+
+        clientLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientLabel2.setText("E-mail");
+
+        clienteLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clienteLabel1.setText("CPF");
+
+        clientCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clientCPFActionPerformed(evt);
+            }
+        });
+
+        clientName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clientNameActionPerformed(evt);
+            }
+        });
+
+        clientLabel.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        clientLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientLabel.setText("Nome");
+
+        clientLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientLabel5.setText("Rua");
+
+        clientLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientLabel7.setText("N°");
+
+        clientHouseNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clientHouseNumberActionPerformed(evt);
+            }
+        });
+
+        clientLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientLabel6.setText("Bairro");
+
+        clientLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientLabel8.setText("CEP");
+
+        clientLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientLabel9.setText("Cidade");
+
+        clientCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clientCityActionPerformed(evt);
             }
         });
 
@@ -228,48 +259,48 @@ public class MenuScreen extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel9)
+                            .addComponent(clienteLabel3)
                             .addGap(6, 6, 6)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(clientPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(65, 65, 65)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(clientLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(5, 5, 5)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(clientCity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addGap(10, 10, 10)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clientLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(5, 5, 5)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(20, 20, 20)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clientLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(5, 5, 5)
-                                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(clientStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clienteLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(5, 5, 5)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clientCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(70, 70, 70)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clientLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(5, 5, 5)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clientNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(10, 10, 10)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clientLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(5, 5, 5)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(clientHouseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clientLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(5, 5, 5)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clientEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(20, 20, 20)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clientLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(5, 5, 5)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(clientCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clientLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(5, 5, 5)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(clientGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
@@ -279,34 +310,34 @@ public class MenuScreen extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(0, 24, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(clientLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(5, 5, 5)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(clienteLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientHouseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(5, 5, 5)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(clientLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(5, 5, 5)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(clienteLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientCity, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(5, 5, 5)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(clientLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(0, 1, Short.MAX_VALUE)))
         );
 
@@ -344,24 +375,28 @@ public class MenuScreen extends javax.swing.JFrame {
         if (SwingUtilities.isRightMouseButton(evt)) {
             int row = clientsTable.rowAtPoint(evt.getPoint());
             if (row >= 0) {
-
-                String cpf = (String) clientsTable.getValueAt(row, 2);
+                DefaultTableModel model = (DefaultTableModel) clientsTable.getModel();
 
                 JPopupMenu popupMenu = new JPopupMenu();
 
-                // Adiciona o item "Excluir Linha"
-                JMenuItem deleteItem = new JMenuItem("Excluir cliente");
-                deleteItem.addActionListener(new ActionListener() {
+                JMenuItem viewItem = new JMenuItem("Visualizar cliente");
+                viewItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
+                        //
+                    }
+                });
 
-                        DefaultTableModel model = (DefaultTableModel) clientsTable.getModel();
+                JMenuItem deleteItem = new JMenuItem("Excluir");
+                deleteItem.addActionListener(new ActionListener() {
+                    int client_id = (Integer) clientsTable.getValueAt(row, 0);
 
+                    public void actionPerformed(ActionEvent e) {
                         int confirmDelete = JOptionPane.showConfirmDialog(null, "Deseja continuar?", "Confirmação", JOptionPane.YES_NO_OPTION);
 
                         if (confirmDelete == JOptionPane.YES_OPTION) {
                             try {
                                 model.removeRow(row);
-                                JsonUtils.deleteAccountFromJson(cpf, clientsTable);
+                                JsonUtils.deleteAccountFromJson(client_id, clientsTable);
                                 JOptionPane.showMessageDialog(null, "USUÁRIO EXCLUÍDO COM SUCESSO!", "Operação concluída", JOptionPane.INFORMATION_MESSAGE);
                             } catch (IOException ex) {
                                 JOptionPane.showMessageDialog(null, "ERRO");
@@ -374,15 +409,48 @@ public class MenuScreen extends javax.swing.JFrame {
                     }
                 });
 
-                JMenuItem updateItem = new JMenuItem("Editar cliente");
+                JMenuItem updateItem = new JMenuItem("Editar");
                 updateItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        DefaultTableModel model = (DefaultTableModel) clientsTable.getModel();
-                        
-                        
+                        int clientId= (Integer) clientsTable.getValueAt(row, 0);
+
+                        ClientAccount client = null;
+
+                        try {
+                            client = JsonUtils.returnRowClientObject(clientId);
+                            //String genderI = (String) clientGender.getSelectedItem();
+
+                            client_id = client.getClient_id();
+                            name = client.getName();
+                            cpf = client.getCpf();
+                            email = client.getEmail();
+                            phone = client.getPhone();
+
+                            gender = "Feminino";
+
+                            street = client.getStreet();
+                            neighborhood = client.getNeighborhood();
+                            houseNumber = client.getHouseNumber();
+                            cep = client.getCep();
+                            city = client.getCity();
+
+                        } catch (IOException ex) {
+                            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        try {
+                            UpdateAccountDialog modalUpdate = new UpdateAccountDialog(MenuScreen.this, true);
+                            modalUpdate.setVisible(true);
+
+                            JsonUtils.refreshTableAccounts(clientsTable);
+                        } catch (IOException ex) {
+                            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
                     }
                 });
 
+                popupMenu.add(viewItem);
                 popupMenu.add(updateItem);
                 popupMenu.add(deleteItem);
                 popupMenu.show(clientsTable, evt.getX(), evt.getY());
@@ -390,21 +458,122 @@ public class MenuScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_clientsTableMousePressed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void clientCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientCityActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_clientCityActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void clientHouseNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientHouseNumberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_clientHouseNumberActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    private void clientPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientPhoneActionPerformed
+
+    }//GEN-LAST:event_clientPhoneActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        String gender = (String) clientGender.getSelectedItem();
+
+        ClientAccount client = null;
+
+        try {
+            client = new ClientAccount(
+                    this.clientName.getText(),
+                    this.clientCPF.getText(),
+                    this.clientEmail.getText(),
+                    this.clientPhone.getText(),
+                    gender,
+                    this.clientStreet.getText(),
+                    this.clientNeighborhood.getText(),
+                    this.clientHouseNumber.getText(),
+                    this.clientCEP.getText(),
+                    this.clientCity.getText()
+            );
+        } catch (IOException ex) {
+            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+
+        //checa se todos os campos estao preenchidos
+        if (clientName.getText().isEmpty() || clientCPF.getText().isEmpty() || clientEmail.getText().isEmpty()
+                || clientPhone.getText().isEmpty() || clientStreet.getText().isEmpty() || clientNeighborhood.getText().isEmpty()
+                || clientHouseNumber.getText().isEmpty() || clientCEP.getText().isEmpty() || clientCity.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "ATENÇÃO: Todos os campos devem estar preenchidos!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        //cpf format check
+        if (client.getCpf().length() != 11 || !client.getCpf().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "ATENÇÃO: CPF deve conter exatamente 11 dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        //cpf valid check
+        try {
+            if (!JsonUtils.isValidCpf(client.getCpf())) {
+                JOptionPane.showMessageDialog(null, "ATENÇÃO: CPF já cadastrado!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //phone check
+        if (client.getPhone().length() != 11 || !client.getPhone().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "ATENÇÃO: Número de celular deve conter exatamente 11 dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        //cep check
+        if (client.getCep().length() != 8 || !client.getCep().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "ATENÇÃO: CEP deve conter exatamente 8 dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        //house number check
+        if (!client.getHouseNumber().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "ATENÇÃO: Número da casa deve conter apenas dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            JsonUtils.saveAccount(client);
+            JsonUtils.refreshTableAccounts(clientsTable);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR CONTA: " + ex);
+            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        clearFormFields(
+                this.clientName,
+                this.clientCPF,
+                this.clientEmail,
+                this.clientPhone,
+                this.clientGender,
+                this.clientStreet,
+                this.clientNeighborhood,
+                this.clientHouseNumber,
+                this.clientCEP,
+                this.clientCity
+        );
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void clientGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clientGenderActionPerformed
+
+    private void clientEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clientEmailActionPerformed
+
+    private void clientNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clientNameActionPerformed
+
+    private void clientCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clientCPFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -443,41 +612,61 @@ public class MenuScreen extends javax.swing.JFrame {
     }
 
     //main methods
-    public static void clearFormFields(javax.swing.JTextField nameField, javax.swing.JTextField cpfField, javax.swing.JComboBox<String> typeField) {
+    public static void clearFormFields(javax.swing.JTextField nameField,
+            javax.swing.JTextField cpfField,
+            javax.swing.JTextField emailField,
+            javax.swing.JTextField phoneField,
+            javax.swing.JComboBox<String> genderField,
+            javax.swing.JTextField streetField,
+            javax.swing.JTextField neighborhoodField,
+            javax.swing.JTextField houseNumberField,
+            javax.swing.JTextField cepField,
+            javax.swing.JTextField cityField) {
+
         nameField.setText("");
         cpfField.setText("");
+        emailField.setText("");
+        phoneField.setText("");
+        streetField.setText("");
+        neighborhoodField.setText("");
+        houseNumberField.setText("");
+        cepField.setText("");
+        cityField.setText("");
+
+        genderField.setSelectedIndex(0);
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField clientCEP;
+    private javax.swing.JTextField clientCPF;
+    private javax.swing.JTextField clientCity;
+    private javax.swing.JTextField clientEmail;
+    private javax.swing.JComboBox<String> clientGender;
+    private javax.swing.JTextField clientHouseNumber;
+    private javax.swing.JLabel clientLabel;
+    private javax.swing.JLabel clientLabel2;
+    private javax.swing.JLabel clientLabel4;
+    private javax.swing.JLabel clientLabel5;
+    private javax.swing.JLabel clientLabel6;
+    private javax.swing.JLabel clientLabel7;
+    private javax.swing.JLabel clientLabel8;
+    private javax.swing.JLabel clientLabel9;
+    private javax.swing.JTextField clientName;
+    private javax.swing.JTextField clientNeighborhood;
+    private javax.swing.JTextField clientPhone;
+    private javax.swing.JTextField clientStreet;
+    private javax.swing.JLabel clienteLabel1;
+    private javax.swing.JLabel clienteLabel3;
     private javax.swing.JTable clientsTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 
 }
