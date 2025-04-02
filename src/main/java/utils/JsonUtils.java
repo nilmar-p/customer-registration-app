@@ -25,7 +25,7 @@ public class JsonUtils {
 
     public static void saveAccount(ClientAccount newAccount) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-
+        
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         Path fileLocation = Paths.get("C:\\data-java-project\\file.json");
@@ -38,14 +38,12 @@ public class JsonUtils {
                 String content = Files.readString(fileLocation);
 
                 if (!content.isEmpty()) {
-                    // Desserializar a lista completa
                     accounts = mapper.readValue(content,
                             new TypeReference<List<ClientAccount>>() {
                     });
                 }
             } catch (Exception e) {
                 System.err.println("Erro ao ler arquivo existente: " + e.getMessage());
-                // Se houver erro, começa com lista vazia
             }
         }
         accounts.add(newAccount);

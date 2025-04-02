@@ -95,6 +95,7 @@ public class MenuScreen extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Painel de Clientes - Nilmar");
         setMinimumSize(new java.awt.Dimension(850, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -105,7 +106,7 @@ public class MenuScreen extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nome", "CPF", "E-mail", "Cidade"
+                "ID", "Nome", "E-mail", "Telefone", "Cidade"
             }
         ) {
             Class[] types = new Class [] {
@@ -290,17 +291,17 @@ public class MenuScreen extends javax.swing.JFrame {
                                     .addGap(5, 5, 5)
                                     .addComponent(clientHouseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(clientLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(5, 5, 5)
-                                    .addComponent(clientEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(20, 20, 20)
-                                    .addComponent(clientLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(5, 5, 5)
-                                    .addComponent(clientCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
                                     .addComponent(clientLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(5, 5, 5)
-                                    .addComponent(clientGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(clientGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(clientLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(5, 5, 5)
+                            .addComponent(clientEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)
+                            .addComponent(clientLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(5, 5, 5)
+                            .addComponent(clientCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
@@ -382,7 +383,34 @@ public class MenuScreen extends javax.swing.JFrame {
                 JMenuItem viewItem = new JMenuItem("Visualizar cliente");
                 viewItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        //
+                        int clientId = (Integer) clientsTable.getValueAt(row, 0);
+
+                        ClientAccount client = null;
+
+                        try {
+                            client = JsonUtils.returnRowClientObject(clientId);
+                            //String genderI = (String) clientGender.getSelectedItem();
+
+                            client_id = client.getClient_id();
+                            name = client.getName();
+                            cpf = client.getCpf();
+                            email = client.getEmail();
+                            phone = client.getPhone();
+
+                            gender = "Feminino";
+
+                            street = client.getStreet();
+                            neighborhood = client.getNeighborhood();
+                            houseNumber = client.getHouseNumber();
+                            cep = client.getCep();
+                            city = client.getCity();
+
+                        } catch (IOException ex) {
+                            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        ShowClientDialog modalView = new ShowClientDialog(MenuScreen.this, true);
+                        modalView.setVisible(true);
                     }
                 });
 

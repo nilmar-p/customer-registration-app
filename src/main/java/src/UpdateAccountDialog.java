@@ -67,7 +67,6 @@ public class UpdateAccountDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar cliente");
         setFocusable(false);
-        setMaximumSize(new java.awt.Dimension(650, 350));
         setMinimumSize(new java.awt.Dimension(650, 350));
         setResizable(false);
         setSize(new java.awt.Dimension(650, 350));
@@ -114,7 +113,7 @@ public class UpdateAccountDialog extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("E-mail");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 160, 50, 35));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 160, 60, 35));
         getContentPane().add(editClientEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 200, 35));
         getContentPane().add(editClientCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 150, 35));
 
