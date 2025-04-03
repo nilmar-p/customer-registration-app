@@ -162,7 +162,7 @@ public class ClientAccount {
         this.phone = phone;
     }
 
-    public String getGender(String gender) {
+    public String getGender() {
         return gender;
     }
 

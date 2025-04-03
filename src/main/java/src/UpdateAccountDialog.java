@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
 import model.ClientAccount;
 import utils.JsonUtils;
 
@@ -26,7 +27,11 @@ public class UpdateAccountDialog extends javax.swing.JDialog {
         editClientEmail.setText(MenuScreen.email);
         editClientPhone.setText(MenuScreen.phone);
 
-        editClientGender.setSelectedIndex(1);
+        if ("Feminino".equals(MenuScreen.gender)) {
+            editClientGender.setSelectedIndex(0);
+        } else {
+            editClientGender.setSelectedIndex(1);
+        }
 
         editClientStreet.setText(MenuScreen.street);
         editClientNeighborhood.setText(MenuScreen.neighborhood);
@@ -85,7 +90,7 @@ public class UpdateAccountDialog extends javax.swing.JDialog {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, 50));
 
         editClientGender.setBackground(new java.awt.Color(30, 136, 229));
-        editClientGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feminino", "Masculino" }));
+        editClientGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Feminino", "Masculino"}));
         editClientGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editClientGenderActionPerformed(evt);
@@ -237,6 +242,7 @@ public class UpdateAccountDialog extends javax.swing.JDialog {
 
         try {
             JsonUtils.updateAccountInJson(updatedClient);
+            JOptionPane.showMessageDialog(null, "USUÁRIO EDITADO COM SUCESSO!", "Operação concluída", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(UpdateAccountDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -265,7 +271,7 @@ public class UpdateAccountDialog extends javax.swing.JDialog {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

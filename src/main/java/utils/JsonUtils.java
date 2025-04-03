@@ -121,6 +121,8 @@ public class JsonUtils {
                 account.setEmail(updatedClient.getEmail());
                 account.setPhone(updatedClient.getPhone());
 
+                account.setGender(updatedClient.getGender());
+
                 account.setStreet(updatedClient.getStreet());
                 account.setNeighborhood(updatedClient.getNeighborhood());
                 account.setHouseNumber(updatedClient.getHouseNumber());
@@ -153,7 +155,7 @@ public class JsonUtils {
         }
     }
 
-    public static ClientAccount returnRowClientObject(int client_id) throws IOException {
+    public static ClientAccount returnRowClientAsObject(int client_id) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
         List<ClientAccount> accounts = mapper.readValue(new File("C:\\data-java-project\\file.json"), new TypeReference<List<ClientAccount>>() {
@@ -168,7 +170,7 @@ public class JsonUtils {
                         account.getCpf(),
                         account.getEmail(),
                         account.getPhone(),
-                        "Feminino",
+                        account.getGender(),
                         account.getStreet(),
                         account.getNeighborhood(),
                         account.getHouseNumber(),

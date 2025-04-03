@@ -1,5 +1,6 @@
 package src;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -67,9 +68,7 @@ public class MenuScreen extends javax.swing.JFrame {
         jSpinner1 = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         clientsTable = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         clientGender = new javax.swing.JComboBox<>();
@@ -93,11 +92,17 @@ public class MenuScreen extends javax.swing.JFrame {
         clientLabel9 = new javax.swing.JLabel();
         clientCity = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Painel de Clientes - Nilmar");
-        setMinimumSize(new java.awt.Dimension(850, 700));
+        setMaximumSize(new java.awt.Dimension(1300, 800));
+        setMinimumSize(new java.awt.Dimension(1300, 800));
+        setPreferredSize(new java.awt.Dimension(1300, 800));
         setResizable(false);
+        //getContentPane().setBackground(new Color(255, 255, 255)); // Define o fundo do JFrame
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         clientsTable.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -124,6 +129,7 @@ public class MenuScreen extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        clientsTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         clientsTable.setSelectionBackground(new java.awt.Color(30, 136, 229));
         clientsTable.setShowGrid(false);
         clientsTable.getTableHeader().setReorderingAllowed(false);
@@ -145,25 +151,18 @@ public class MenuScreen extends javax.swing.JFrame {
             clientsTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 407, 835, 250));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 740, 720));
 
-        jLabel4.setFont(new java.awt.Font("JetBrains Mono", 0, 36)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Registrar novo cliente");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 841, -1));
-
+        jTextField3.setToolTipText("");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 200, 35));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 250, 40));
+        jTextField3.getAccessibleContext().setAccessibleParent(clientsTable);
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Pesquisa");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 70, 30));
-
-        jButton1.setBackground(new java.awt.Color(30, 136, 229));
+        jButton1.setBackground(new java.awt.Color(0, 102, 153));
         jButton1.setFont(new java.awt.Font("JetBrains Mono", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Buscar");
@@ -173,9 +172,9 @@ public class MenuScreen extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, 80, 35));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 80, 40));
 
-        clientGender.setBackground(new java.awt.Color(30, 136, 229));
+        clientGender.setBackground(new java.awt.Color(0, 102, 153));
         clientGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feminino", "Masculino" }));
         clientGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,12 +188,14 @@ public class MenuScreen extends javax.swing.JFrame {
         clienteLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         clienteLabel3.setText("Número");
 
+        clientPhone.setSelectionColor(new java.awt.Color(0, 102, 153));
         clientPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clientPhoneActionPerformed(evt);
             }
         });
 
+        clientEmail.setSelectionColor(new java.awt.Color(0, 102, 153));
         clientEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clientEmailActionPerformed(evt);
@@ -207,12 +208,14 @@ public class MenuScreen extends javax.swing.JFrame {
         clienteLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         clienteLabel1.setText("CPF");
 
+        clientCPF.setSelectionColor(new java.awt.Color(0, 102, 153));
         clientCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clientCPFActionPerformed(evt);
             }
         });
 
+        clientName.setSelectionColor(new java.awt.Color(0, 102, 153));
         clientName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clientNameActionPerformed(evt);
@@ -226,14 +229,21 @@ public class MenuScreen extends javax.swing.JFrame {
         clientLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         clientLabel5.setText("Rua");
 
+        clientStreet.setSelectionColor(new java.awt.Color(0, 102, 153));
+
+        clientNeighborhood.setSelectionColor(new java.awt.Color(0, 102, 153));
+
         clientLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         clientLabel7.setText("N°");
 
+        clientHouseNumber.setSelectionColor(new java.awt.Color(0, 102, 153));
         clientHouseNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clientHouseNumberActionPerformed(evt);
             }
         });
+
+        clientCEP.setSelectionColor(new java.awt.Color(0, 102, 153));
 
         clientLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         clientLabel6.setText("Bairro");
@@ -244,6 +254,7 @@ public class MenuScreen extends javax.swing.JFrame {
         clientLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         clientLabel9.setText("Cidade");
 
+        clientCity.setSelectionColor(new java.awt.Color(0, 102, 153));
         clientCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clientCityActionPerformed(evt);
@@ -254,7 +265,7 @@ public class MenuScreen extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -339,12 +350,12 @@ public class MenuScreen extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(clientLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(clientGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 1, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 720, 220));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 550, 220));
 
-        jButton2.setBackground(new java.awt.Color(30, 136, 229));
+        jButton2.setBackground(new java.awt.Color(0, 102, 153));
         jButton2.setFont(new java.awt.Font("JetBrains Mono", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("SALVAR");
@@ -354,7 +365,22 @@ public class MenuScreen extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, -1, 50));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 510, -1, 50));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CPF", "Cidade" }));
+        jComboBox1.setFocusable(false);
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, -1, 40));
+
+        jLabel5.setFont(new java.awt.Font("JetBrains Mono", 0, 36)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("PAINEL DE CLIENTES");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 550, -1));
+
+        jLabel6.setFont(new java.awt.Font("JetBrains Mono", 0, 36)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Novo cliente");
+        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 550, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -366,126 +392,6 @@ public class MenuScreen extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void clientsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientsTableMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clientsTableMouseClicked
-
-    private void clientsTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientsTableMousePressed
-
-        if (SwingUtilities.isRightMouseButton(evt)) {
-            int row = clientsTable.rowAtPoint(evt.getPoint());
-            if (row >= 0) {
-                DefaultTableModel model = (DefaultTableModel) clientsTable.getModel();
-
-                JPopupMenu popupMenu = new JPopupMenu();
-
-                JMenuItem viewItem = new JMenuItem("Visualizar cliente");
-                viewItem.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        int clientId = (Integer) clientsTable.getValueAt(row, 0);
-
-                        ClientAccount client = null;
-
-                        try {
-                            client = JsonUtils.returnRowClientObject(clientId);
-                            //String genderI = (String) clientGender.getSelectedItem();
-
-                            client_id = client.getClient_id();
-                            name = client.getName();
-                            cpf = client.getCpf();
-                            email = client.getEmail();
-                            phone = client.getPhone();
-
-                            gender = "Feminino";
-
-                            street = client.getStreet();
-                            neighborhood = client.getNeighborhood();
-                            houseNumber = client.getHouseNumber();
-                            cep = client.getCep();
-                            city = client.getCity();
-
-                        } catch (IOException ex) {
-                            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                        ShowClientDialog modalView = new ShowClientDialog(MenuScreen.this, true);
-                        modalView.setVisible(true);
-                    }
-                });
-
-                JMenuItem deleteItem = new JMenuItem("Excluir");
-                deleteItem.addActionListener(new ActionListener() {
-                    int client_id = (Integer) clientsTable.getValueAt(row, 0);
-
-                    public void actionPerformed(ActionEvent e) {
-                        int confirmDelete = JOptionPane.showConfirmDialog(null, "Deseja continuar?", "Confirmação", JOptionPane.YES_NO_OPTION);
-
-                        if (confirmDelete == JOptionPane.YES_OPTION) {
-                            try {
-                                model.removeRow(row);
-                                JsonUtils.deleteAccountFromJson(client_id);
-                                JOptionPane.showMessageDialog(null, "USUÁRIO EXCLUÍDO COM SUCESSO!", "Operação concluída", JOptionPane.INFORMATION_MESSAGE);
-                                JsonUtils.refreshTableAccounts(clientsTable);
-                            } catch (IOException ex) {
-                                JOptionPane.showMessageDialog(null, "ERRO");
-                                throw new RuntimeException(ex);
-                            }
-                        } else {
-                            JOptionPane.showMessageDialog(null, "OPERAÇÃO CANCELADA!", "Operação cancelada", JOptionPane.ERROR_MESSAGE);
-                        }
-
-                    }
-                });
-
-                JMenuItem updateItem = new JMenuItem("Editar");
-                updateItem.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        int clientId = (Integer) clientsTable.getValueAt(row, 0);
-
-                        ClientAccount client = null;
-
-                        try {
-                            client = JsonUtils.returnRowClientObject(clientId);
-                            //String genderI = (String) clientGender.getSelectedItem();
-
-                            client_id = client.getClient_id();
-                            name = client.getName();
-                            cpf = client.getCpf();
-                            email = client.getEmail();
-                            phone = client.getPhone();
-
-                            gender = "Feminino";
-
-                            street = client.getStreet();
-                            neighborhood = client.getNeighborhood();
-                            houseNumber = client.getHouseNumber();
-                            cep = client.getCep();
-                            city = client.getCity();
-
-                        } catch (IOException ex) {
-                            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                        try {
-                            UpdateAccountDialog modalUpdate = new UpdateAccountDialog(MenuScreen.this, true);
-                            modalUpdate.setVisible(true);
-
-                            JsonUtils.refreshTableAccounts(clientsTable);
-                        } catch (IOException ex) {
-                            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                    }
-                });
-
-                popupMenu.add(viewItem);
-                popupMenu.add(updateItem);
-                popupMenu.add(deleteItem);
-                popupMenu.show(clientsTable, evt.getX(), evt.getY());
-            }
-        }
-    }//GEN-LAST:event_clientsTableMousePressed
 
     private void clientCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientCityActionPerformed
         // TODO add your handling code here:
@@ -567,6 +473,7 @@ public class MenuScreen extends javax.swing.JFrame {
 
         try {
             JsonUtils.saveAccount(client);
+            JOptionPane.showMessageDialog(null, "USUÁRIO REGISTRADO COM SUCESSO!", "Operação concluída", JOptionPane.INFORMATION_MESSAGE);
             JsonUtils.refreshTableAccounts(clientsTable);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR CONTA: " + ex);
@@ -603,6 +510,127 @@ public class MenuScreen extends javax.swing.JFrame {
     private void clientCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientCPFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_clientCPFActionPerformed
+
+    private void clientsTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientsTableMousePressed
+        if (SwingUtilities.isRightMouseButton(evt)) {
+            int row = clientsTable.rowAtPoint(evt.getPoint());
+            if (row >= 0) {
+                clientsTable.setRowSelectionInterval(row, row);
+                clientsTable.setFocusable(true);
+                clientsTable.requestFocusInWindow();
+
+                DefaultTableModel model = (DefaultTableModel) clientsTable.getModel();
+
+                JPopupMenu popupMenu = new JPopupMenu();
+
+                JMenuItem viewItem = new JMenuItem("Visualizar cliente");
+                viewItem.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        int clientId = (Integer) clientsTable.getValueAt(row, 0);
+
+                        ClientAccount client = null;
+
+                        try {
+                            client = JsonUtils.returnRowClientAsObject(clientId);
+
+                            client_id = client.getClient_id();
+                            name = client.getName();
+                            cpf = client.getCpf();
+                            email = client.getEmail();
+                            phone = client.getPhone();
+
+                            gender = client.getGender();
+
+                            street = client.getStreet();
+                            neighborhood = client.getNeighborhood();
+                            houseNumber = client.getHouseNumber();
+                            cep = client.getCep();
+                            city = client.getCity();
+
+                        } catch (IOException ex) {
+                            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        ShowClientDialog modalView = new ShowClientDialog(MenuScreen.this, true);
+                        modalView.setVisible(true);
+                    }
+                });
+
+                JMenuItem deleteItem = new JMenuItem("Excluir");
+                deleteItem.addActionListener(new ActionListener() {
+                    int client_id = (Integer) clientsTable.getValueAt(row, 0);
+
+                    public void actionPerformed(ActionEvent e) {
+                        int confirmDelete = JOptionPane.showConfirmDialog(null, "Deseja continuar?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+                        if (confirmDelete == JOptionPane.YES_OPTION) {
+                            try {
+                                model.removeRow(row);
+                                JsonUtils.deleteAccountFromJson(client_id);
+                                JOptionPane.showMessageDialog(null, "USUÁRIO EXCLUÍDO COM SUCESSO!", "Operação concluída", JOptionPane.INFORMATION_MESSAGE);
+                                JsonUtils.refreshTableAccounts(clientsTable);
+                            } catch (IOException ex) {
+                                JOptionPane.showMessageDialog(null, "ERRO");
+                                throw new RuntimeException(ex);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "OPERAÇÃO CANCELADA!", "Operação cancelada", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    }
+                });
+
+                JMenuItem updateItem = new JMenuItem("Editar");
+                updateItem.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        int clientId = (Integer) clientsTable.getValueAt(row, 0);
+
+                        ClientAccount client = null;
+
+                        try {
+                            client = JsonUtils.returnRowClientAsObject(clientId);
+
+                            client_id = client.getClient_id();
+                            name = client.getName();
+                            cpf = client.getCpf();
+                            email = client.getEmail();
+                            phone = client.getPhone();
+
+                            gender = client.getGender();
+
+                            street = client.getStreet();
+                            neighborhood = client.getNeighborhood();
+                            houseNumber = client.getHouseNumber();
+                            cep = client.getCep();
+                            city = client.getCity();
+
+                        } catch (IOException ex) {
+                            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        try {
+                            UpdateAccountDialog modalUpdate = new UpdateAccountDialog(MenuScreen.this, true);
+                            modalUpdate.setVisible(true);
+
+                            JsonUtils.refreshTableAccounts(clientsTable);
+                        } catch (IOException ex) {
+                            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                    }
+                });
+
+                popupMenu.add(viewItem);
+                popupMenu.add(updateItem);
+                popupMenu.add(deleteItem);
+                popupMenu.show(clientsTable, evt.getX(), evt.getY());
+            }
+        }
+    }//GEN-LAST:event_clientsTableMousePressed
+
+    private void clientsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientsTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clientsTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -690,7 +718,8 @@ public class MenuScreen extends javax.swing.JFrame {
     private javax.swing.JTable clientsTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
