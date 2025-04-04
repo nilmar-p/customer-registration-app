@@ -103,7 +103,7 @@ public class ClientAccount {
             boolean idExists;
 
             do {
-                newId = ThreadLocalRandom.current().nextInt(1000, 10000);
+                newId = ThreadLocalRandom.current().nextInt(10000, 99999);
                 idExists = false;
 
                 for (ClientAccount account : accounts) {
@@ -212,7 +212,7 @@ public class ClientAccount {
 
     @Override
     public String toString() {
-        return "ClientAccount{"
+        return "ClientAccount {"
                 + ", client_id='" + client_id + '\''
                 + ", name='" + name + '\''
                 + ", cpf='" + cpf + '\''

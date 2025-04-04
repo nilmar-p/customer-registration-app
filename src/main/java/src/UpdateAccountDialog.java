@@ -3,9 +3,7 @@ package src;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import model.ClientAccount;
 import utils.JsonUtils;
 
@@ -191,16 +189,16 @@ public class UpdateAccountDialog extends javax.swing.JDialog {
         try {
             updatedClient = new ClientAccount(
                     MenuScreen.client_id,
-                    this.editClientName.getText(),
-                    this.editClientCPF.getText(),
-                    this.editClientEmail.getText(),
-                    this.editClientPhone.getText(),
+                    this.editClientName.getText().trim().toUpperCase(),
+                    this.editClientCPF.getText().trim().toUpperCase(),
+                    this.editClientEmail.getText().trim().toUpperCase(),
+                    this.editClientPhone.getText().trim().toUpperCase(),
                     gender,
-                    this.editClientStreet.getText(),
-                    this.editClientNeighborhood.getText(),
-                    this.editClientHouseNumber.getText(),
-                    this.editClientCEP.getText(),
-                    this.editClientCity.getText()
+                    this.editClientStreet.getText().trim().toUpperCase(),
+                    this.editClientNeighborhood.getText().trim().toUpperCase(),
+                    this.editClientHouseNumber.getText().trim().toUpperCase(),
+                    this.editClientCEP.getText().trim().toUpperCase(),
+                    this.editClientCity.getText().trim().toUpperCase()
             );
         } catch (IOException ex) {
             Logger.getLogger(UpdateAccountDialog.class.getName()).log(Level.SEVERE, null, ex);

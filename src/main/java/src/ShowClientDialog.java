@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package src;
 
-/**
- *
- * @author Administrator
- */
 public class ShowClientDialog extends javax.swing.JDialog {
 
     /**
@@ -64,6 +56,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
         showClientHouseNumber = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Visualizar cliente");
         setMaximumSize(new java.awt.Dimension(650, 350));
         setMinimumSize(new java.awt.Dimension(650, 350));
         setPreferredSize(new java.awt.Dimension(650, 350));

@@ -3,23 +3,15 @@ package utils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import java.awt.Component;
-import java.awt.Frame;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.*;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-
 import model.ClientAccount;
-import src.MenuScreen;
-import src.UpdateAccountDialog;
 
 public class JsonUtils {
 
