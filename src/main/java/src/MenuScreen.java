@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,6 +34,8 @@ public class MenuScreen extends javax.swing.JFrame {
     public static String houseNumber;
     public static String cep;
     public static String city;
+
+    public static JTable table;
 
     public MenuScreen() {
         initComponents();
@@ -67,33 +70,14 @@ public class MenuScreen extends javax.swing.JFrame {
         jSpinner1 = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         clientsTable = new javax.swing.JTable();
-        jTextField3 = new javax.swing.JTextField();
+        searchInput = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        clientGender = new javax.swing.JComboBox<>();
-        clientLabel4 = new javax.swing.JLabel();
-        clienteLabel3 = new javax.swing.JLabel();
-        clientPhone = new javax.swing.JTextField();
-        clientEmail = new javax.swing.JTextField();
-        clientLabel2 = new javax.swing.JLabel();
-        clienteLabel1 = new javax.swing.JLabel();
-        clientCPF = new javax.swing.JTextField();
-        clientName = new javax.swing.JTextField();
-        clientLabel = new javax.swing.JLabel();
-        clientLabel5 = new javax.swing.JLabel();
-        clientStreet = new javax.swing.JTextField();
-        clientNeighborhood = new javax.swing.JTextField();
-        clientLabel7 = new javax.swing.JLabel();
-        clientHouseNumber = new javax.swing.JTextField();
-        clientCEP = new javax.swing.JTextField();
-        clientLabel6 = new javax.swing.JLabel();
-        clientLabel8 = new javax.swing.JLabel();
-        clientLabel9 = new javax.swing.JLabel();
-        clientCity = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        searchFilter = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Painel de Clientes - Nilmar");
@@ -158,14 +142,14 @@ public class MenuScreen extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 740, 570));
 
-        jTextField3.setToolTipText("");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        searchInput.setToolTipText("");
+        searchInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                searchInputActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 250, 40));
-        jTextField3.getAccessibleContext().setAccessibleParent(clientsTable);
+        getContentPane().add(searchInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 250, 40));
+        searchInput.getAccessibleContext().setAccessibleParent(clientsTable);
 
         jButton1.setBackground(new java.awt.Color(0, 102, 153));
         jButton1.setFont(new java.awt.Font("JetBrains Mono", 1, 12)); // NOI18N
@@ -179,343 +163,104 @@ public class MenuScreen extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 80, 40));
 
-        clientGender.setBackground(new java.awt.Color(0, 102, 153));
-        clientGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Feminino", "Masculino"}));
-        clientGender.addActionListener(new java.awt.event.ActionListener() {
+        searchFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Nome", "CPF", "Cidade"}));
+        searchFilter.setFocusable(false);
+        searchFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientGenderActionPerformed(evt);
+                searchFilterActionPerformed(evt);
             }
         });
-
-        clientLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clientLabel4.setText("Sexo");
-
-        clienteLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clienteLabel3.setText("Número");
-
-        clientPhone.setSelectionColor(new java.awt.Color(0, 102, 153));
-        clientPhone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientPhoneActionPerformed(evt);
-            }
-        });
-
-        clientEmail.setSelectionColor(new java.awt.Color(0, 102, 153));
-        clientEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientEmailActionPerformed(evt);
-            }
-        });
-
-        clientLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clientLabel2.setText("E-mail");
-
-        clienteLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clienteLabel1.setText("CPF");
-
-        clientCPF.setSelectionColor(new java.awt.Color(0, 102, 153));
-        clientCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientCPFActionPerformed(evt);
-            }
-        });
-
-        clientName.setSelectionColor(new java.awt.Color(0, 102, 153));
-        clientName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientNameActionPerformed(evt);
-            }
-        });
-
-        clientLabel.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
-        clientLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clientLabel.setText("Nome");
-
-        clientLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clientLabel5.setText("Rua");
-
-        clientStreet.setSelectionColor(new java.awt.Color(0, 102, 153));
-
-        clientNeighborhood.setSelectionColor(new java.awt.Color(0, 102, 153));
-
-        clientLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clientLabel7.setText("N°");
-
-        clientHouseNumber.setSelectionColor(new java.awt.Color(0, 102, 153));
-        clientHouseNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientHouseNumberActionPerformed(evt);
-            }
-        });
-
-        clientCEP.setSelectionColor(new java.awt.Color(0, 102, 153));
-
-        clientLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clientLabel6.setText("Bairro");
-
-        clientLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clientLabel8.setText("CEP");
-
-        clientLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clientLabel9.setText("Cidade");
-
-        clientCity.setSelectionColor(new java.awt.Color(0, 102, 153));
-        clientCity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientCityActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 550, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                        .addComponent(clienteLabel3)
-                                                        .addGap(6, 6, 6)
-                                                        .addComponent(clientPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(65, 65, 65)
-                                                        .addComponent(clientLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(5, 5, 5)
-                                                        .addComponent(clientCity, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                        .addGap(10, 10, 10)
-                                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                                        .addComponent(clientLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(5, 5, 5)
-                                                                        .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(20, 20, 20)
-                                                                        .addComponent(clientLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(5, 5, 5)
-                                                                        .addComponent(clientStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                                        .addComponent(clienteLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(5, 5, 5)
-                                                                        .addComponent(clientCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(70, 70, 70)
-                                                                        .addComponent(clientLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(5, 5, 5)
-                                                                        .addComponent(clientNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(10, 10, 10)
-                                                                        .addComponent(clientLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(5, 5, 5)
-                                                                        .addComponent(clientHouseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                                        .addComponent(clientLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(5, 5, 5)
-                                                                        .addComponent(clientGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                        .addComponent(clientLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(5, 5, 5)
-                                                        .addComponent(clientEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(20, 20, 20)
-                                                        .addComponent(clientLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(5, 5, 5)
-                                                        .addComponent(clientCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel3Layout.setVerticalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 220, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(0, 24, Short.MAX_VALUE)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(clientLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(5, 5, 5)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(clienteLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientHouseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(5, 5, 5)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(clientLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(5, 5, 5)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(clienteLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientCity, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(5, 5, 5)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(clientLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(clientGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 550, 220));
-
-        jButton2.setBackground(new java.awt.Color(0, 102, 153));
-        jButton2.setFont(new java.awt.Font("JetBrains Mono", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("SALVAR");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, -1, 50));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Nome", "CPF", "Cidade"}));
-        jComboBox1.setFocusable(false);
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, -1, 40));
+        getContentPane().add(searchFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, -1, 40));
 
         jLabel6.setFont(new java.awt.Font("JetBrains Mono", 0, 36)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("MENU DE CLIENTES");
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 550, -1));
 
-        jLabel7.setFont(new java.awt.Font("JetBrains Mono", 0, 36)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("NOVO CLIENTE");
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 550, -1));
+        jButton3.setBackground(new java.awt.Color(0, 102, 153));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("NOVO CLIENTE");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setMaximumSize(new java.awt.Dimension(220, 100));
+        jButton3.setMinimumSize(new java.awt.Dimension(220, 100));
+        jButton3.setPreferredSize(new java.awt.Dimension(220, 100));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(0, 102, 153));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("CRIAR BACKUP");
+        jButton2.setAutoscrolls(true);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setMaximumSize(new java.awt.Dimension(220, 100));
+        jButton2.setMinimumSize(new java.awt.Dimension(220, 100));
+        jButton2.setPreferredSize(new java.awt.Dimension(220, 100));
+
+        jButton4.setBackground(new java.awt.Color(0, 102, 153));
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("IMPORTAR BACKUP");
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setMaximumSize(new java.awt.Dimension(220, 130));
+        jButton4.setMinimumSize(new java.awt.Dimension(220, 130));
+        jButton4.setPreferredSize(new java.awt.Dimension(220, 100));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(95, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(95, 95, 95))
+        );
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 410, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
+        String search = searchInput.getText().trim().toUpperCase();
+        String filter = (String) searchFilter.getSelectedItem();
+
+        try {
+            JsonUtils.searchAccount(search, filter.trim().toUpperCase(), clientsTable);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }//GEN-LAST:event_searchInputActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String search = searchInput.getText().trim().toUpperCase();
+        String filter = (String) searchFilter.getSelectedItem();
+
+        try {
+            JsonUtils.searchAccount(search, filter.trim().toUpperCase(), clientsTable);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void clientCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientCityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clientCityActionPerformed
-
-    private void clientHouseNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientHouseNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clientHouseNumberActionPerformed
-
-    private void clientPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientPhoneActionPerformed
-
-    }//GEN-LAST:event_clientPhoneActionPerformed
-
-    private void clientGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientGenderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clientGenderActionPerformed
-
-    private void clientEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clientEmailActionPerformed
-
-    private void clientNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clientNameActionPerformed
-
-    private void clientCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientCPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clientCPFActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String gender = (String) clientGender.getSelectedItem();
-
-        ClientAccount client = null;
-
-        try {
-            client = new ClientAccount(
-                    this.clientName.getText().trim().toUpperCase(),
-                    this.clientCPF.getText().trim().toUpperCase(),
-                    this.clientEmail.getText().trim().toUpperCase(),
-                    this.clientPhone.getText().trim().toUpperCase(),
-                    gender,
-                    this.clientStreet.getText().trim().toUpperCase(),
-                    this.clientNeighborhood.getText().trim().toUpperCase(),
-                    this.clientHouseNumber.getText().trim().toUpperCase(),
-                    this.clientCEP.getText().trim().toUpperCase(),
-                    this.clientCity.getText().trim().toUpperCase()
-            );
-        } catch (IOException ex) {
-            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
-            return;
-        }
-
-        //checa se todos os campos estao preenchidos
-        if (clientName.getText().isEmpty() || clientCPF.getText().isEmpty() || clientEmail.getText().isEmpty()
-                || clientPhone.getText().isEmpty() || clientStreet.getText().isEmpty() || clientNeighborhood.getText().isEmpty()
-                || clientHouseNumber.getText().isEmpty() || clientCEP.getText().isEmpty() || clientCity.getText().isEmpty()) {
-
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: Todos os campos devem estar preenchidos!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        //cpf format check
-        if (client.getCpf().length() != 11 || !client.getCpf().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: CPF deve conter exatamente 11 dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        //cpf valid check
-        try {
-            if (!JsonUtils.isValidCpf(client.getCpf())) {
-                JOptionPane.showMessageDialog(null, "ATENÇÃO: CPF já cadastrado!", "ERRO", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        //phone check
-        if (client.getPhone().length() != 11 || !client.getPhone().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: Número de celular deve conter exatamente 11 dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        //cep check
-        if (client.getCep().length() != 8 || !client.getCep().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: CEP deve conter exatamente 8 dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        //house number check
-        if (!client.getHouseNumber().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: Número da casa deve conter apenas dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try {
-            JsonUtils.saveAccount(client);
-            JOptionPane.showMessageDialog(null, "USUÁRIO REGISTRADO COM SUCESSO!", "Operação concluída", JOptionPane.INFORMATION_MESSAGE);
-            JsonUtils.refreshTableAccounts(clientsTable);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR CONTA: " + ex);
-            Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        clearFormFields(
-                this.clientName,
-                this.clientCPF,
-                this.clientEmail,
-                this.clientPhone,
-                this.clientGender,
-                this.clientStreet,
-                this.clientNeighborhood,
-                this.clientHouseNumber,
-                this.clientCEP,
-                this.clientCity
-        );
-
-    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     private void clientsTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientsTableMousePressed
@@ -616,7 +361,7 @@ public class MenuScreen extends javax.swing.JFrame {
                         }
 
                         try {
-                            UpdateAccountDialog modalUpdate = new UpdateAccountDialog(MenuScreen.this, true);
+                            UpdateClientDialog modalUpdate = new UpdateClientDialog(MenuScreen.this, true);
                             modalUpdate.setVisible(true);
 
                             JsonUtils.refreshTableAccounts(clientsTable);
@@ -638,6 +383,17 @@ public class MenuScreen extends javax.swing.JFrame {
     private void clientsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientsTableMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_clientsTableMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        table = clientsTable;
+
+        SaveClientDialog modalSave = new SaveClientDialog(MenuScreen.this, true);
+        modalSave.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void searchFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFilterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchFilterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -702,36 +458,17 @@ public class MenuScreen extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField clientCEP;
-    private javax.swing.JTextField clientCPF;
-    private javax.swing.JTextField clientCity;
-    private javax.swing.JTextField clientEmail;
-    private javax.swing.JComboBox<String> clientGender;
-    private javax.swing.JTextField clientHouseNumber;
-    private javax.swing.JLabel clientLabel;
-    private javax.swing.JLabel clientLabel2;
-    private javax.swing.JLabel clientLabel4;
-    private javax.swing.JLabel clientLabel5;
-    private javax.swing.JLabel clientLabel6;
-    private javax.swing.JLabel clientLabel7;
-    private javax.swing.JLabel clientLabel8;
-    private javax.swing.JLabel clientLabel9;
-    private javax.swing.JTextField clientName;
-    private javax.swing.JTextField clientNeighborhood;
-    private javax.swing.JTextField clientPhone;
-    private javax.swing.JTextField clientStreet;
-    private javax.swing.JLabel clienteLabel1;
-    private javax.swing.JLabel clienteLabel3;
     private javax.swing.JTable clientsTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JComboBox<String> searchFilter;
+    private javax.swing.JTextField searchInput;
     // End of variables declaration//GEN-END:variables
 
 }

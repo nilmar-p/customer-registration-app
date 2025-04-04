@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import model.ClientAccount;
 import utils.JsonUtils;
 
-public class UpdateAccountDialog extends javax.swing.JDialog {
+public class UpdateClientDialog extends javax.swing.JDialog {
 
     private static ClientAccount updatedClient;
 
@@ -15,7 +15,7 @@ public class UpdateAccountDialog extends javax.swing.JDialog {
         return updatedClient;
     }
 
-    public UpdateAccountDialog(javax.swing.JFrame parent, boolean modal) {
+    public UpdateClientDialog(javax.swing.JFrame parent, boolean modal) {
         super(parent, modal);
 
         initComponents();
@@ -70,12 +70,14 @@ public class UpdateAccountDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar cliente");
         setFocusable(false);
+        setMaximumSize(new java.awt.Dimension(650, 350));
         setMinimumSize(new java.awt.Dimension(650, 350));
+        setPreferredSize(new java.awt.Dimension(650, 350));
         setResizable(false);
         setSize(new java.awt.Dimension(650, 350));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(30, 136, 229));
+        jButton1.setBackground(new java.awt.Color(0, 102, 153));
         jButton1.setFont(new java.awt.Font("JetBrains Mono", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("SALVAR");
@@ -87,8 +89,8 @@ public class UpdateAccountDialog extends javax.swing.JDialog {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, 50));
 
-        editClientGender.setBackground(new java.awt.Color(30, 136, 229));
-        editClientGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Feminino", "Masculino"}));
+        editClientGender.setBackground(new java.awt.Color(0, 102, 153));
+        editClientGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feminino", "Masculino" }));
         editClientGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editClientGenderActionPerformed(evt);
@@ -201,38 +203,10 @@ public class UpdateAccountDialog extends javax.swing.JDialog {
                     this.editClientCity.getText().trim().toUpperCase()
             );
         } catch (IOException ex) {
-            Logger.getLogger(UpdateAccountDialog.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateClientDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        //checa se todos os campos estao preenchidos
-        if (editClientName.getText().isEmpty() || editClientCPF.getText().isEmpty() || editClientEmail.getText().isEmpty()
-                || editClientPhone.getText().isEmpty() || editClientStreet.getText().isEmpty() || editClientNeighborhood.getText().isEmpty()
-                || editClientHouseNumber.getText().isEmpty() || editClientCEP.getText().isEmpty() || editClientCity.getText().isEmpty()) {
-
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: Todos os campos devem estar preenchidos!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        //cpf check
-        if (updatedClient.getCpf().length() != 11 || !updatedClient.getCpf().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: CPF deve conter exatamente 11 dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (updatedClient.getPhone().length() != 11 || !updatedClient.getPhone().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: Número de celular deve conter exatamente 11 dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        //cep check
-        if (updatedClient.getCep().length() != 8 || !updatedClient.getCep().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: CEP deve conter exatamente 8 dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        //house number check
-        if (!updatedClient.getHouseNumber().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: Número da casa deve conter apenas dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
+        if(!JsonUtils.isFormValid(updatedClient)){
             return;
         }
 
@@ -242,7 +216,7 @@ public class UpdateAccountDialog extends javax.swing.JDialog {
             JsonUtils.updateAccountInJson(updatedClient);
             JOptionPane.showMessageDialog(null, "USUÁRIO EDITADO COM SUCESSO!", "Operação concluída", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
-            Logger.getLogger(UpdateAccountDialog.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateClientDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -279,20 +253,21 @@ public class UpdateAccountDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UpdateAccountDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateClientDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UpdateAccountDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateClientDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UpdateAccountDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateClientDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UpdateAccountDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateClientDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                UpdateAccountDialog dialog = new UpdateAccountDialog(new javax.swing.JFrame(), true);
+                UpdateClientDialog dialog = new UpdateClientDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
