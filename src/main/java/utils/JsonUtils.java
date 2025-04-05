@@ -50,7 +50,7 @@ public class JsonUtils {
                 StandardOpenOption.WRITE);
     }
 
-    public static boolean isValidCpf(String cpf) throws IOException {
+    public static boolean isCpfValid(String cpf) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
         List<ClientAccount> accounts = mapper.readValue(new File("C:\\data-java-project\\file.json"), new TypeReference<List<ClientAccount>>() {
@@ -153,7 +153,7 @@ public class JsonUtils {
                 }
                 break;
             case "CPF":
-                if (!search.matches("\\f+") && !search.equals("")) {
+                if (!search.matches("\\d+") && !search.equals("")) {
                     JOptionPane.showMessageDialog(null, "ATENÇÃO: CPF deve conter apenas dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
                     break;
                 }
@@ -223,49 +223,4 @@ public class JsonUtils {
         return client;
 
     }
-
-    public static boolean isFormValid(ClientAccount client) {
-
-        //Verificação de campos vazios
-        if (client.getName().isEmpty() || client.getCpf().isEmpty() || client.getEmail().isEmpty()
-                || client.getPhone().isEmpty() || client.getStreet().isEmpty()
-                || client.getNeighborhood().isEmpty() || client.getHouseNumber().isEmpty()
-                || client.getCep().isEmpty() || client.getCity().isEmpty()) {
-
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: Todos os campos devem estar preenchidos!",
-                    "ERRO", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        // CPF check
-        if (client.getCpf().length() != 11 || !client.getCpf().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: CPF deve conter exatamente 11 dígitos numéricos!",
-                    "ERRO", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        // Phone check
-        if (client.getPhone().length() != 11 || !client.getPhone().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: Número de celular deve conter exatamente 11 dígitos numéricos!",
-                    "ERRO", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        // CEP check
-        if (client.getCep().length() != 8 || !client.getCep().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: CEP deve conter exatamente 8 dígitos numéricos!",
-                    "ERRO", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        // House number check
-        if (!client.getHouseNumber().matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: Número da casa deve conter apenas dígitos numéricos!",
-                    "ERRO", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        return true;
-    }
 }
-

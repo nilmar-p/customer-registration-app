@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.ClientAccount;
 import utils.JsonUtils;
+import utils.MaskUtils;
 
 public class UpdateClientDialog extends javax.swing.JDialog {
 
@@ -19,6 +20,7 @@ public class UpdateClientDialog extends javax.swing.JDialog {
         super(parent, modal);
 
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(191, 191, 201, 255));
 
         editClientName.setText(MenuScreen.name);
         editClientCPF.setText(MenuScreen.cpf);
@@ -70,11 +72,9 @@ public class UpdateClientDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar cliente");
         setFocusable(false);
-        setMaximumSize(new java.awt.Dimension(650, 350));
-        setMinimumSize(new java.awt.Dimension(650, 350));
-        setPreferredSize(new java.awt.Dimension(650, 350));
+        setMinimumSize(new java.awt.Dimension(650, 370));
         setResizable(false);
-        setSize(new java.awt.Dimension(650, 350));
+        setSize(new java.awt.Dimension(650, 370));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(0, 102, 153));
@@ -107,8 +107,8 @@ public class UpdateClientDialog extends javax.swing.JDialog {
 
         jLabel9.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Número");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, 35));
+        jLabel9.setText("Telefone");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 70, 35));
 
         jLabel1.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -206,8 +206,12 @@ public class UpdateClientDialog extends javax.swing.JDialog {
             Logger.getLogger(UpdateClientDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        if(!JsonUtils.isFormValid(updatedClient)){
-            return;
+        try {
+            if (!MaskUtils.isFormValid(updatedClient)) {
+                return;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(UpdateClientDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         dispose();

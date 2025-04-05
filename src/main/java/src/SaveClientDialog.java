@@ -1,11 +1,13 @@
 package src;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.ClientAccount;
 import utils.JsonUtils;
+import utils.MaskUtils;
 
 /**
  *
@@ -19,6 +21,7 @@ public class SaveClientDialog extends javax.swing.JDialog {
     public SaveClientDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(191, 191, 201, 255));
         setLocationRelativeTo(null);
     }
 
@@ -56,9 +59,7 @@ public class SaveClientDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Salvar cliente");
-        setMaximumSize(new java.awt.Dimension(650, 350));
-        setMinimumSize(new java.awt.Dimension(650, 350));
-        setPreferredSize(new java.awt.Dimension(650, 350));
+        setMinimumSize(new java.awt.Dimension(650, 370));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -83,6 +84,14 @@ public class SaveClientDialog extends javax.swing.JDialog {
         });
         getContentPane().add(clientGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, 35));
 
+        clientPhone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                clientPhoneFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                clientPhoneFocusLost(evt);
+            }
+        });
         clientPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clientPhoneActionPerformed(evt);
@@ -92,8 +101,8 @@ public class SaveClientDialog extends javax.swing.JDialog {
 
         jLabel9.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Número");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, 35));
+        jLabel9.setText("Telefone");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 70, 35));
 
         jLabel1.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -103,8 +112,17 @@ public class SaveClientDialog extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("E-mail");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 160, 60, 35));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 60, 35));
         getContentPane().add(clientEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 200, 35));
+
+        clientCPF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                clientCPFFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                clientCPFFocusLost(evt);
+            }
+        });
         getContentPane().add(clientCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 150, 35));
 
         jLabel3.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
@@ -147,6 +165,15 @@ public class SaveClientDialog extends javax.swing.JDialog {
             }
         });
         getContentPane().add(clientHouseNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 50, 35));
+
+        clientCEP.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                clientCEPFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                clientCEPFocusLost(evt);
+            }
+        });
         getContentPane().add(clientCEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 120, 35));
 
         jLabel7.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
@@ -192,8 +219,12 @@ public class SaveClientDialog extends javax.swing.JDialog {
             return;
         }
 
-        if(!JsonUtils.isFormValid(client)){
-            return;
+        try {
+            if (!MaskUtils.isFormValid(client)) {
+                return;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(SaveClientDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         try {
@@ -204,7 +235,7 @@ public class SaveClientDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR CONTA: " + ex);
             Logger.getLogger(MenuScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -223,6 +254,42 @@ public class SaveClientDialog extends javax.swing.JDialog {
     private void clientCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientCityActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_clientCityActionPerformed
+
+    private void clientCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_clientCPFFocusLost
+//        try {
+//            MaskUtils.cpfMask(clientCPF, clientCPF.getText());
+//        } catch (IOException ex) {
+//            Logger.getLogger(SaveClientDialog.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }//GEN-LAST:event_clientCPFFocusLost
+
+    private void clientCPFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_clientCPFFocusGained
+//        MaskUtils.maskRemove(clientCPF);
+    }//GEN-LAST:event_clientCPFFocusGained
+
+    private void clientPhoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_clientPhoneFocusLost
+//        try {
+//            MaskUtils.phoneMask(clientPhone);
+//        } catch (IOException ex) {
+//            Logger.getLogger(SaveClientDialog.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }//GEN-LAST:event_clientPhoneFocusLost
+
+    private void clientPhoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_clientPhoneFocusGained
+//        MaskUtils.maskRemove(clientPhone);
+    }//GEN-LAST:event_clientPhoneFocusGained
+
+    private void clientCEPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_clientCEPFocusLost
+//        try {
+//            MaskUtils.cepMask(clientCEP);
+//        } catch (IOException ex) {
+//            Logger.getLogger(SaveClientDialog.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }//GEN-LAST:event_clientCEPFocusLost
+
+    private void clientCEPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_clientCEPFocusGained
+//        MaskUtils.maskRemove(clientCEP);
+    }//GEN-LAST:event_clientCEPFocusGained
 
     /**
      * @param args the command line arguments
