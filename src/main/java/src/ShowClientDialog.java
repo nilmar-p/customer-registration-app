@@ -8,6 +8,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
     public ShowClientDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(191, 191, 201, 255));
         setLocationRelativeTo(null);
         
         showClientName.setText(MenuScreen.name);
@@ -57,9 +58,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Visualizar cliente");
-        setMaximumSize(new java.awt.Dimension(650, 350));
         setMinimumSize(new java.awt.Dimension(650, 350));
-        setPreferredSize(new java.awt.Dimension(650, 350));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -70,11 +69,11 @@ public class ShowClientDialog extends javax.swing.JDialog {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 650, -1));
 
         showClientCity.setEditable(false);
-        showClientCity.setForeground(new java.awt.Color(30, 30, 30));
+        showClientCity.setBackground(new java.awt.Color(191, 191, 201));
+        showClientCity.setForeground(new java.awt.Color(0, 0, 0));
         showClientCity.setBorder(null);
         showClientCity.setCaretColor(new java.awt.Color(30, 30, 30));
         showClientCity.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        showClientCity.setEnabled(false);
         showClientCity.setFocusable(false);
         showClientCity.setRequestFocusEnabled(false);
         showClientCity.setSelectedTextColor(new java.awt.Color(0, 0, 0));
@@ -86,44 +85,44 @@ public class ShowClientDialog extends javax.swing.JDialog {
         getContentPane().add(showClientCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 200, 35));
 
         showClientCEP.setEditable(false);
-        showClientCEP.setForeground(new java.awt.Color(30, 30, 30));
+        showClientCEP.setBackground(new java.awt.Color(191, 191, 201));
+        showClientCEP.setForeground(new java.awt.Color(0, 0, 0));
         showClientCEP.setBorder(null);
         showClientCEP.setCaretColor(new java.awt.Color(30, 30, 30));
         showClientCEP.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        showClientCEP.setEnabled(false);
         showClientCEP.setFocusable(false);
         showClientCEP.setRequestFocusEnabled(false);
         showClientCEP.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         getContentPane().add(showClientCEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 120, 35));
 
         showClientNeighborhood.setEditable(false);
-        showClientNeighborhood.setForeground(new java.awt.Color(30, 30, 30));
+        showClientNeighborhood.setBackground(new java.awt.Color(191, 191, 201));
+        showClientNeighborhood.setForeground(new java.awt.Color(0, 0, 0));
         showClientNeighborhood.setBorder(null);
         showClientNeighborhood.setCaretColor(new java.awt.Color(30, 30, 30));
         showClientNeighborhood.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        showClientNeighborhood.setEnabled(false);
         showClientNeighborhood.setFocusable(false);
         showClientNeighborhood.setRequestFocusEnabled(false);
         showClientNeighborhood.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         getContentPane().add(showClientNeighborhood, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 100, 35));
 
         showClientStreet.setEditable(false);
-        showClientStreet.setForeground(new java.awt.Color(30, 30, 30));
+        showClientStreet.setBackground(new java.awt.Color(191, 191, 201));
+        showClientStreet.setForeground(new java.awt.Color(0, 0, 0));
         showClientStreet.setBorder(null);
         showClientStreet.setCaretColor(new java.awt.Color(30, 30, 30));
         showClientStreet.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        showClientStreet.setEnabled(false);
         showClientStreet.setFocusable(false);
         showClientStreet.setRequestFocusEnabled(false);
         showClientStreet.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         getContentPane().add(showClientStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 200, 35));
 
         showClientGender.setEditable(false);
-        showClientGender.setForeground(new java.awt.Color(30, 30, 30));
+        showClientGender.setBackground(new java.awt.Color(191, 191, 201));
+        showClientGender.setForeground(new java.awt.Color(0, 0, 0));
         showClientGender.setBorder(null);
         showClientGender.setCaretColor(new java.awt.Color(30, 30, 30));
         showClientGender.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        showClientGender.setEnabled(false);
         showClientGender.setFocusable(false);
         showClientGender.setRequestFocusEnabled(false);
         showClientGender.setSelectedTextColor(new java.awt.Color(0, 0, 0));
@@ -134,79 +133,79 @@ public class ShowClientDialog extends javax.swing.JDialog {
         });
         getContentPane().add(showClientGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 90, 35));
 
-        jLabel5.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("N°");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 35, 35));
 
-        jLabel6.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Bairro:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 120, 50, 35));
 
-        jLabel7.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("CEP:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 35, 35));
 
-        jLabel11.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Cidade:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 200, 50, 35));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 200, 60, 35));
 
-        jLabel4.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Rua:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 35, 35));
 
         showClientCPF.setEditable(false);
-        showClientCPF.setForeground(new java.awt.Color(30, 30, 30));
+        showClientCPF.setBackground(new java.awt.Color(191, 191, 201));
+        showClientCPF.setForeground(new java.awt.Color(0, 0, 0));
         showClientCPF.setBorder(null);
         showClientCPF.setCaretColor(new java.awt.Color(30, 30, 30));
         showClientCPF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        showClientCPF.setEnabled(false);
         showClientCPF.setFocusable(false);
         showClientCPF.setRequestFocusEnabled(false);
         showClientCPF.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         getContentPane().add(showClientCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 150, 35));
 
         showClientName.setEditable(false);
-        showClientName.setForeground(new java.awt.Color(30, 30, 30));
+        showClientName.setBackground(new java.awt.Color(191, 191, 201));
+        showClientName.setForeground(new java.awt.Color(0, 0, 0));
         showClientName.setBorder(null);
         showClientName.setCaretColor(new java.awt.Color(30, 30, 30));
         showClientName.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        showClientName.setEnabled(false);
         showClientName.setFocusable(false);
         showClientName.setRequestFocusEnabled(false);
         showClientName.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         getContentPane().add(showClientName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 200, 35));
 
-        jLabel10.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Nome:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 35, 35));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 80, 50, 35));
 
-        jLabel3.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("CPF:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 35, 35));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 120, 30, 35));
 
-        jLabel8.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("E-mail:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 160, 60, 35));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 160, 50, 35));
 
-        jLabel9.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Telefone:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 200, 70, 35));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, 35));
 
         showClientPhone.setEditable(false);
-        showClientPhone.setForeground(new java.awt.Color(30, 30, 30));
+        showClientPhone.setBackground(new java.awt.Color(191, 191, 201));
+        showClientPhone.setForeground(new java.awt.Color(0, 0, 0));
         showClientPhone.setBorder(null);
         showClientPhone.setCaretColor(new java.awt.Color(30, 30, 30));
         showClientPhone.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        showClientPhone.setEnabled(false);
         showClientPhone.setFocusable(false);
         showClientPhone.setRequestFocusEnabled(false);
         showClientPhone.setSelectedTextColor(new java.awt.Color(0, 0, 0));
@@ -218,27 +217,27 @@ public class ShowClientDialog extends javax.swing.JDialog {
         getContentPane().add(showClientPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 150, 35));
 
         showClientEmail.setEditable(false);
-        showClientEmail.setForeground(new java.awt.Color(30, 30, 30));
+        showClientEmail.setBackground(new java.awt.Color(191, 191, 201));
+        showClientEmail.setForeground(new java.awt.Color(0, 0, 0));
         showClientEmail.setBorder(null);
         showClientEmail.setCaretColor(new java.awt.Color(30, 30, 30));
         showClientEmail.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        showClientEmail.setEnabled(false);
         showClientEmail.setFocusable(false);
         showClientEmail.setRequestFocusEnabled(false);
         showClientEmail.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         getContentPane().add(showClientEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 200, 35));
 
-        jLabel1.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sexo:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 240, 50, 35));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 240, 40, 35));
 
         showClientHouseNumber.setEditable(false);
-        showClientHouseNumber.setForeground(new java.awt.Color(30, 30, 30));
+        showClientHouseNumber.setBackground(new java.awt.Color(191, 191, 201));
+        showClientHouseNumber.setForeground(new java.awt.Color(0, 0, 0));
         showClientHouseNumber.setBorder(null);
         showClientHouseNumber.setCaretColor(new java.awt.Color(30, 30, 30));
         showClientHouseNumber.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        showClientHouseNumber.setEnabled(false);
         showClientHouseNumber.setFocusable(false);
         showClientHouseNumber.setRequestFocusEnabled(false);
         showClientHouseNumber.setSelectedTextColor(new java.awt.Color(0, 0, 0));

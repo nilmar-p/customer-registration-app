@@ -19,6 +19,7 @@ public class SaveClientDialog extends javax.swing.JDialog {
     public SaveClientDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(191, 191, 201, 255));
         setLocationRelativeTo(null);
     }
 
@@ -56,9 +57,7 @@ public class SaveClientDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Salvar cliente");
-        setMaximumSize(new java.awt.Dimension(650, 350));
-        setMinimumSize(new java.awt.Dimension(650, 350));
-        setPreferredSize(new java.awt.Dimension(650, 350));
+        setMinimumSize(new java.awt.Dimension(650, 370));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -92,8 +91,8 @@ public class SaveClientDialog extends javax.swing.JDialog {
 
         jLabel9.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Número");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, 35));
+        jLabel9.setText("Telefone");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 70, 35));
 
         jLabel1.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -103,7 +102,7 @@ public class SaveClientDialog extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("E-mail");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 160, 60, 35));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 60, 35));
         getContentPane().add(clientEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 200, 35));
         getContentPane().add(clientCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 150, 35));
 

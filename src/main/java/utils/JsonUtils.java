@@ -153,7 +153,7 @@ public class JsonUtils {
                 }
                 break;
             case "CPF":
-                if (!search.matches("\\f+") && !search.equals("")) {
+                if (!search.matches("\\d+") && !search.equals("")) {
                     JOptionPane.showMessageDialog(null, "ATENÇÃO: CPF deve conter apenas dígitos numéricos!", "ERRO", JOptionPane.ERROR_MESSAGE);
                     break;
                 }
@@ -268,4 +268,3 @@ public class JsonUtils {
         return true;
     }
 }
-
