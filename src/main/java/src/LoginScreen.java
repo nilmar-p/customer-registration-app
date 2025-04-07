@@ -1,16 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package src;
 
-import javax.swing.*;
 import utils.LoginUtils;
 
 public class LoginScreen extends javax.swing.JFrame {
-
-    String loggedUser;
-
     public LoginScreen() {
         initComponents();
         setLocationRelativeTo(null);
@@ -117,16 +109,19 @@ public class LoginScreen extends javax.swing.JFrame {
         char[] passwordChars = passwordField.getPassword();
         String password = new String(passwordChars);
 
-        
-        
-        MenuScreen menu = new MenuScreen();
+        if (LoginUtils.areLoginCredentialsValid(user, password)) {            
+            MenuScreen menu = new MenuScreen();
 
-        menu.setVisible(true);
-        dispose();
+            menu.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        SignUpScreen signUpScreen = new SignUpScreen();
+        
+        signUpScreen.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {

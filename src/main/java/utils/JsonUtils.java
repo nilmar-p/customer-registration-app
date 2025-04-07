@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import model.ClientAccount;
 
 public class JsonUtils {
-    public static Path fileLocation = Paths.get("C:\\customer-registration-app\\clients.json");
+    public static Path fileLocation = Paths.get("C:\\customer-registration-app\\users", LoginUtils.loggedUser, "clients.json");
 
     public static void saveClient(ClientAccount newClient) throws IOException {
         ObjectMapper mapper = new ObjectMapper();

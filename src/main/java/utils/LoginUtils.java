@@ -8,9 +8,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import javax.swing.JOptionPane;
 import model.UserAccount;
 
 public class LoginUtils {
+
+    public static String loggedUser;
 
     public static boolean createAccount(UserAccount newAccount) throws IOException {
         String userName = newAccount.getUserName();
@@ -34,8 +37,43 @@ public class LoginUtils {
 
         return true;
     }
-    
-    public static void checkLoginCredentials(String user, String password){
-        
+
+    public static boolean areLoginCredentialsValid(String user, String password) {
+        ObjectMapper mapper = new ObjectMapper();
+        Path userJsonPath = Paths.get("C:\\customer-registration-app\\users", user, "accountSettings.json");
+
+        if (!Files.exists(userJsonPath)) {
+            JOptionPane.showMessageDialog(null, "Usuário não existe!", "ERRO!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        String content;
+        UserAccount settings = null;
+
+        try {
+            content = Files.readString(userJsonPath);
+
+            if (!content.isEmpty()) {
+                settings = mapper.readValue(content, UserAccount.class);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "O arquivo AccountSettings.json está vazio!", "ERRO!", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (!settings.getUserPassword().equals(password)) {
+            JOptionPane.showMessageDialog(null, "Senha incorreta para " + user + "!", "ERRO!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        JOptionPane.showMessageDialog(null, "Login realizado com sucesso!", "ERRO!", JOptionPane.INFORMATION_MESSAGE);
+
+        loggedUser = user;
+        return true;
     }
+
 }

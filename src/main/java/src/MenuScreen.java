@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import model.ClientAccount;
 import utils.BackupUtils;
 import utils.JsonUtils;
+import utils.LoginUtils;
 
 public class MenuScreen extends javax.swing.JFrame {
 
@@ -70,7 +71,7 @@ public class MenuScreen extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        loggedUserLabel = new javax.swing.JLabel();
         userIcon = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -184,9 +185,9 @@ public class MenuScreen extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("usuario.sobrenome");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        loggedUserLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        loggedUserLabel.setText(LoginUtils.loggedUser);
+        loggedUserLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         userIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
 
@@ -217,7 +218,7 @@ public class MenuScreen extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(userIcon)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(loggedUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(149, 149, 149)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -229,7 +230,7 @@ public class MenuScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(userIcon)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loggedUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(74, 74, 74)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -478,7 +479,10 @@ public class MenuScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        LoginScreen loginScreen = new LoginScreen();
+
+        loginScreen.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -518,15 +522,15 @@ public class MenuScreen extends javax.swing.JFrame {
 
     //main methods
     public static void clearFormFields(javax.swing.JTextField nameField,
-                                       javax.swing.JTextField cpfField,
-                                       javax.swing.JTextField emailField,
-                                       javax.swing.JTextField phoneField,
-                                       javax.swing.JComboBox<String> genderField,
-                                       javax.swing.JTextField streetField,
-                                       javax.swing.JTextField neighborhoodField,
-                                       javax.swing.JTextField houseNumberField,
-                                       javax.swing.JTextField cepField,
-                                       javax.swing.JTextField cityField) {
+            javax.swing.JTextField cpfField,
+            javax.swing.JTextField emailField,
+            javax.swing.JTextField phoneField,
+            javax.swing.JComboBox<String> genderField,
+            javax.swing.JTextField streetField,
+            javax.swing.JTextField neighborhoodField,
+            javax.swing.JTextField houseNumberField,
+            javax.swing.JTextField cepField,
+            javax.swing.JTextField cityField) {
 
         nameField.setText("");
         cpfField.setText("");
@@ -549,12 +553,12 @@ public class MenuScreen extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JLabel loggedUserLabel;
     private javax.swing.JComboBox<String> searchFilter;
     private javax.swing.JTextField searchInput;
     private javax.swing.JLabel userIcon;
