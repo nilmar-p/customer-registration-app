@@ -8,7 +8,6 @@ public class ShowClientDialog extends javax.swing.JDialog {
     public ShowClientDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        getContentPane().setBackground(new java.awt.Color(191, 191, 201, 255));
         setLocationRelativeTo(null);
         
         showClientName.setText(MenuScreen.name);
@@ -69,7 +68,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 650, -1));
 
         showClientCity.setEditable(false);
-        showClientCity.setBackground(new java.awt.Color(191, 191, 201));
+        showClientCity.setBackground(new java.awt.Color(214, 217, 223));
         showClientCity.setForeground(new java.awt.Color(0, 0, 0));
         showClientCity.setBorder(null);
         showClientCity.setCaretColor(new java.awt.Color(30, 30, 30));
@@ -85,7 +84,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
         getContentPane().add(showClientCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 200, 35));
 
         showClientCEP.setEditable(false);
-        showClientCEP.setBackground(new java.awt.Color(191, 191, 201));
+        showClientCEP.setBackground(new java.awt.Color(214, 217, 223));
         showClientCEP.setForeground(new java.awt.Color(0, 0, 0));
         showClientCEP.setBorder(null);
         showClientCEP.setCaretColor(new java.awt.Color(30, 30, 30));
@@ -96,7 +95,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
         getContentPane().add(showClientCEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 120, 35));
 
         showClientNeighborhood.setEditable(false);
-        showClientNeighborhood.setBackground(new java.awt.Color(191, 191, 201));
+        showClientNeighborhood.setBackground(new java.awt.Color(214, 217, 223));
         showClientNeighborhood.setForeground(new java.awt.Color(0, 0, 0));
         showClientNeighborhood.setBorder(null);
         showClientNeighborhood.setCaretColor(new java.awt.Color(30, 30, 30));
@@ -107,7 +106,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
         getContentPane().add(showClientNeighborhood, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 100, 35));
 
         showClientStreet.setEditable(false);
-        showClientStreet.setBackground(new java.awt.Color(191, 191, 201));
+        showClientStreet.setBackground(new java.awt.Color(214, 217, 223));
         showClientStreet.setForeground(new java.awt.Color(0, 0, 0));
         showClientStreet.setBorder(null);
         showClientStreet.setCaretColor(new java.awt.Color(30, 30, 30));
@@ -118,7 +117,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
         getContentPane().add(showClientStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 200, 35));
 
         showClientGender.setEditable(false);
-        showClientGender.setBackground(new java.awt.Color(191, 191, 201));
+        showClientGender.setBackground(new java.awt.Color(214, 217, 223));
         showClientGender.setForeground(new java.awt.Color(0, 0, 0));
         showClientGender.setBorder(null);
         showClientGender.setCaretColor(new java.awt.Color(30, 30, 30));
@@ -159,7 +158,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 35, 35));
 
         showClientCPF.setEditable(false);
-        showClientCPF.setBackground(new java.awt.Color(191, 191, 201));
+        showClientCPF.setBackground(new java.awt.Color(214, 217, 223));
         showClientCPF.setForeground(new java.awt.Color(0, 0, 0));
         showClientCPF.setBorder(null);
         showClientCPF.setCaretColor(new java.awt.Color(30, 30, 30));
@@ -170,7 +169,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
         getContentPane().add(showClientCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 150, 35));
 
         showClientName.setEditable(false);
-        showClientName.setBackground(new java.awt.Color(191, 191, 201));
+        showClientName.setBackground(new java.awt.Color(214, 217, 223));
         showClientName.setForeground(new java.awt.Color(0, 0, 0));
         showClientName.setBorder(null);
         showClientName.setCaretColor(new java.awt.Color(30, 30, 30));
@@ -201,7 +200,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, 35));
 
         showClientPhone.setEditable(false);
-        showClientPhone.setBackground(new java.awt.Color(191, 191, 201));
+        showClientPhone.setBackground(new java.awt.Color(214, 217, 223));
         showClientPhone.setForeground(new java.awt.Color(0, 0, 0));
         showClientPhone.setBorder(null);
         showClientPhone.setCaretColor(new java.awt.Color(30, 30, 30));
@@ -217,7 +216,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
         getContentPane().add(showClientPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 150, 35));
 
         showClientEmail.setEditable(false);
-        showClientEmail.setBackground(new java.awt.Color(191, 191, 201));
+        showClientEmail.setBackground(new java.awt.Color(214, 217, 223));
         showClientEmail.setForeground(new java.awt.Color(0, 0, 0));
         showClientEmail.setBorder(null);
         showClientEmail.setCaretColor(new java.awt.Color(30, 30, 30));
@@ -233,7 +232,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 240, 40, 35));
 
         showClientHouseNumber.setEditable(false);
-        showClientHouseNumber.setBackground(new java.awt.Color(191, 191, 201));
+        showClientHouseNumber.setBackground(new java.awt.Color(214, 217, 223));
         showClientHouseNumber.setForeground(new java.awt.Color(0, 0, 0));
         showClientHouseNumber.setBorder(null);
         showClientHouseNumber.setCaretColor(new java.awt.Color(30, 30, 30));

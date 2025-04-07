@@ -3,10 +3,11 @@ package model;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import utils.JsonUtils;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -88,13 +89,12 @@ public class ClientAccount {
         this.city = city;
     }
 
-    // Método para gerar um ID aleatório
     private int generateUniqueClientId() {
         try {
             ObjectMapper mapper = new ObjectMapper();
             mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-            Path fileLocation = Paths.get("C:\\data-java-project\\file.json");
+            Path fileLocation = JsonUtils.fileLocation;
             Files.createDirectories(fileLocation.getParent());
 
             List<ClientAccount> accounts = new ArrayList<>();

@@ -21,7 +21,6 @@ public class SaveClientDialog extends javax.swing.JDialog {
     public SaveClientDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        getContentPane().setBackground(new java.awt.Color(191, 191, 201, 255));
         setLocationRelativeTo(null);
     }
 
@@ -228,7 +227,7 @@ public class SaveClientDialog extends javax.swing.JDialog {
         }
 
         try {
-            JsonUtils.saveAccount(client);
+            JsonUtils.saveClient(client);
             JOptionPane.showMessageDialog(null, "USUÁRIO REGISTRADO COM SUCESSO!", "Operação concluída", JOptionPane.INFORMATION_MESSAGE);
             JsonUtils.refreshTableAccounts(MenuScreen.table);
         } catch (IOException ex) {

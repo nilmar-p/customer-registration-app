@@ -20,7 +20,6 @@ public class UpdateClientDialog extends javax.swing.JDialog {
         super(parent, modal);
 
         initComponents();
-        getContentPane().setBackground(new java.awt.Color(191, 191, 201, 255));
 
         editClientName.setText(MenuScreen.name);
         editClientCPF.setText(MenuScreen.cpf);
@@ -221,6 +220,7 @@ public class UpdateClientDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "USUÁRIO EDITADO COM SUCESSO!", "Operação concluída", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(UpdateClientDialog.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "ERRO AO CRIAR BACKUP!", "ERRO!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

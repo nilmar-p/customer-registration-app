@@ -4,16 +4,26 @@
  */
 package src;
 
-import javax.swing.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.UserAccount;
 import utils.LoginUtils;
 
-public class LoginScreen extends javax.swing.JFrame {
+/**
+ *
+ * @author Administrator
+ */
+public class SignUpScreen extends javax.swing.JFrame {
 
-    String loggedUser;
-
-    public LoginScreen() {
+    /**
+     * Creates new form SignUpScreen
+     */
+    public SignUpScreen() {
         initComponents();
         setLocationRelativeTo(null);
+
     }
 
     /**
@@ -25,28 +35,26 @@ public class LoginScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         userField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        confirmPasswordFIeld = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Painel Clientes - Login");
         setMinimumSize(new java.awt.Dimension(650, 550));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Painel de Clientes - Login");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 650, 150));
+        jLabel2.setText("Painel de Clientes - Cadastro");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 650, 150));
 
         userField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userField.setMaximumSize(new java.awt.Dimension(70, 25));
@@ -57,26 +65,25 @@ public class LoginScreen extends javax.swing.JFrame {
                 userFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(userField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 240, 40));
+        getContentPane().add(userField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 240, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Senha");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 70, 40));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 70, 40));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Usuário");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 70, 40));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 70, 40));
 
         passwordField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jPanel1.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 240, 40));
-        passwordField.getAccessibleContext().setAccessibleDescription("");
+        getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 240, 40));
 
         jButton1.setBackground(new java.awt.Color(0, 102, 153));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Entrar");
+        jButton1.setText("Cadastrar");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setMaximumSize(new java.awt.Dimension(120, 60));
         jButton1.setMinimumSize(new java.awt.Dimension(120, 60));
@@ -86,24 +93,30 @@ public class LoginScreen extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 120, 60));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 120, 60));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 650, 390));
+        confirmPasswordFIeld.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        getContentPane().add(confirmPasswordFIeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 240, 40));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Confirme a senha");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 150, 40));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Não tem uma conta?");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 470, -1, 30));
+        jLabel5.setText("Já possui conta?");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 470, -1, 30));
 
         jButton2.setBackground(new java.awt.Color(0, 102, 153));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Cadastrar-se");
+        jButton2.setText("Entrar");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 470, -1, 30));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 470, -1, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -115,13 +128,38 @@ public class LoginScreen extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String user = userField.getText();
         char[] passwordChars = passwordField.getPassword();
+        char[] confirmPasswordChars = confirmPasswordFIeld.getPassword();
+
         String password = new String(passwordChars);
+        String confirmPassword = new String(confirmPasswordChars);
 
-        
-        
-        MenuScreen menu = new MenuScreen();
+        if (!password.equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(null, "ERRO: As senhas não coincidem!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-        menu.setVisible(true);
+        UserAccount newUserAccount;
+        try {
+            newUserAccount = new UserAccount(user, password);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "erro ao criar nova conta");
+            return;
+        }
+
+        try {
+            if (LoginUtils.createAccount(newUserAccount)) {
+                JOptionPane.showMessageDialog(null, "CONTA CRIADA COM SUCESSO!", "Operação concluída", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "ERRO: Usuário já existe! Por favor, escolha outro.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(SignUpScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        LoginScreen LoginScreen = new LoginScreen();
+
+        LoginScreen.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -143,32 +181,33 @@ public class LoginScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginScreen().setVisible(true);
+                new SignUpScreen().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField confirmPasswordFIeld;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField userField;
     // End of variables declaration//GEN-END:variables

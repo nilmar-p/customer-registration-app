@@ -16,23 +16,23 @@ import javax.swing.table.DefaultTableModel;
 import model.ClientAccount;
 
 public class JsonUtils {
+    public static Path fileLocation = Paths.get("C:\\customer-registration-app\\clients.json");
 
-    public static void saveAccount(ClientAccount newAccount) throws IOException {
+    public static void saveClient(ClientAccount newClient) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        Path fileLocation = Paths.get("C:\\data-java-project\\file.json");
         Files.createDirectories(fileLocation.getParent());
 
-        List<ClientAccount> accounts = new ArrayList<>();
+        List<ClientAccount> clients = new ArrayList<>();
 
         if (Files.exists(fileLocation)) {
             try {
                 String content = Files.readString(fileLocation);
 
                 if (!content.isEmpty()) {
-                    accounts = mapper.readValue(content,
+                    clients = mapper.readValue(content,
                             new TypeReference<List<ClientAccount>>() {
                             });
                 }
@@ -40,9 +40,9 @@ public class JsonUtils {
                 System.err.println("Erro ao ler arquivo existente: " + e.getMessage());
             }
         }
-        accounts.add(newAccount);
+        clients.add(newClient);
 
-        String json = mapper.writeValueAsString(accounts);
+        String json = mapper.writeValueAsString(clients);
 
         Files.write(fileLocation, json.getBytes(StandardCharsets.UTF_8),
                 StandardOpenOption.CREATE,
@@ -53,7 +53,7 @@ public class JsonUtils {
     public static boolean isCpfValid(String cpf) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
-        List<ClientAccount> accounts = mapper.readValue(new File("C:\\data-java-project\\file.json"), new TypeReference<List<ClientAccount>>() {
+        List<ClientAccount> accounts = mapper.readValue(new File(String.valueOf(fileLocation)), new TypeReference<List<ClientAccount>>() {
         });
 
         for (ClientAccount account : accounts) {
@@ -70,7 +70,6 @@ public class JsonUtils {
 
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        Path fileLocation = Paths.get("C:\\data-java-project\\file.json");
         Files.createDirectories(fileLocation.getParent());
 
         String content = Files.readString(fileLocation);
@@ -97,7 +96,6 @@ public class JsonUtils {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        Path fileLocation = Paths.get("C:\\data-java-project\\file.json");
         Files.createDirectories(fileLocation.getParent());
 
         String content = Files.readString(fileLocation);
@@ -137,7 +135,7 @@ public class JsonUtils {
         DefaultTableModel clientsTableModel = (DefaultTableModel) clientsTable.getModel();
         ObjectMapper mapper = new ObjectMapper();
 
-        List<ClientAccount> accounts = mapper.readValue(new File("C:\\data-java-project\\file.json"), new TypeReference<List<ClientAccount>>() {
+        List<ClientAccount> accounts = mapper.readValue(new File(String.valueOf(fileLocation)), new TypeReference<List<ClientAccount>>() {
         });
 
         clientsTableModel.setRowCount(0);
@@ -184,7 +182,7 @@ public class JsonUtils {
 
         clientsTableModel.setRowCount(0);
 
-        List<ClientAccount> accounts = mapper.readValue(new File("C:\\data-java-project\\file.json"), new TypeReference<List<ClientAccount>>() {
+        List<ClientAccount> accounts = mapper.readValue(new File(String.valueOf(fileLocation)), new TypeReference<List<ClientAccount>>() {
         });
 
         for (ClientAccount account : accounts) {
@@ -197,7 +195,7 @@ public class JsonUtils {
     public static ClientAccount returnRowClientAsObject(int client_id) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
-        List<ClientAccount> accounts = mapper.readValue(new File("C:\\data-java-project\\file.json"), new TypeReference<List<ClientAccount>>() {
+        List<ClientAccount> accounts = mapper.readValue(new File(String.valueOf(fileLocation)), new TypeReference<List<ClientAccount>>() {
         });
 
         ClientAccount client = null;
