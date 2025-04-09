@@ -1,47 +1,11 @@
 package utils;
 
-import java.awt.Color;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import model.ClientAccount;
 
 public class MaskUtils {
 
-//    public static void cpfMask(JTextField fieldCPF, String cpf) throws IOException {
-//        if (!JsonUtils.isValidCpf(cpf)) {
-//            fieldCPF.setForeground(Color.RED);
-//            JOptionPane.showMessageDialog(null, "ATENÇÃO: CPF já cadastrado!", "ERRO", JOptionPane.ERROR_MESSAGE);
-//        }
-//
-//        String formatedCpf = fieldCPF.getText().substring(0, 3) + "."
-//                + fieldCPF.getText().substring(3, 6) + "."
-//                + fieldCPF.getText().substring(6, 9) + "-"
-//                + fieldCPF.getText().substring(9);
-//
-//        fieldCPF.setText(formatedCpf);
-//    }
-//
-//    public static void phoneMask(JTextField fieldPhone) throws IOException {
-//        String formatedPhone = "(" + fieldPhone.getText().substring(0, 2) + ") "
-//                + fieldPhone.getText().substring(2, 7) + "-"
-//                + fieldPhone.getText().substring(7);
-//
-//        fieldPhone.setText(formatedPhone);
-//    }
-//
-//    public static void cepMask(JTextField fieldCep) throws IOException {
-//        String formatedCep = fieldCep.getText().substring(0, 5) + "-"
-//                + fieldCep.getText().substring(5);
-//
-//        fieldCep.setText(formatedCep);
-//    }
-//
-//    public static void maskRemove(JTextField field) {
-//        field.setForeground(Color.black);
-//        field.setCaretPosition(field.getText().length());
-//        field.setText(field.getText().replaceAll("\\D", ""));
-//    }
     public static boolean isFormValid(ClientAccount client) throws IOException {
 
         // Empty filds check

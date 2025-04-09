@@ -20,7 +20,7 @@
         <configuration>
           <transformers>
             <transformer>
-              <mainClass>src.MenuScreen</mainClass>
+              <mainClass>src.LoginScreen</mainClass>
             </transformer>
           </transformers>
         </configuration>

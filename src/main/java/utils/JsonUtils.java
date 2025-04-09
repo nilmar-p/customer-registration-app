@@ -16,25 +16,28 @@ import javax.swing.table.DefaultTableModel;
 import model.ClientAccount;
 
 public class JsonUtils {
-    public static Path fileLocation = Paths.get("C:\\customer-registration-app\\users", LoginUtils.loggedUser, "clients.json");
+
+    public static Path getFileLocation() {
+        return Paths.get("C:\\customer-registration-app\\users", LoginUtils.loggedUser, "clients.json");
+    }
 
     public static void saveClient(ClientAccount newClient) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        Files.createDirectories(fileLocation.getParent());
+        Files.createDirectories(getFileLocation().getParent());
 
         List<ClientAccount> clients = new ArrayList<>();
 
-        if (Files.exists(fileLocation)) {
+        if (Files.exists(getFileLocation())) {
             try {
-                String content = Files.readString(fileLocation);
+                String content = Files.readString(getFileLocation());
 
                 if (!content.isEmpty()) {
                     clients = mapper.readValue(content,
                             new TypeReference<List<ClientAccount>>() {
-                            });
+                    });
                 }
             } catch (Exception e) {
                 System.err.println("Erro ao ler arquivo existente: " + e.getMessage());
@@ -44,7 +47,7 @@ public class JsonUtils {
 
         String json = mapper.writeValueAsString(clients);
 
-        Files.write(fileLocation, json.getBytes(StandardCharsets.UTF_8),
+        Files.write(getFileLocation(), json.getBytes(StandardCharsets.UTF_8),
                 StandardOpenOption.CREATE,
                 StandardOpenOption.TRUNCATE_EXISTING,
                 StandardOpenOption.WRITE);
@@ -53,7 +56,7 @@ public class JsonUtils {
     public static boolean isCpfValid(String cpf) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
-        List<ClientAccount> accounts = mapper.readValue(new File(String.valueOf(fileLocation)), new TypeReference<List<ClientAccount>>() {
+        List<ClientAccount> accounts = mapper.readValue(new File(String.valueOf(getFileLocation())), new TypeReference<List<ClientAccount>>() {
         });
 
         for (ClientAccount account : accounts) {
@@ -70,9 +73,9 @@ public class JsonUtils {
 
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        Files.createDirectories(fileLocation.getParent());
+        Files.createDirectories(getFileLocation().getParent());
 
-        String content = Files.readString(fileLocation);
+        String content = Files.readString(getFileLocation());
 
         List<ClientAccount> accounts = new ArrayList<>();
         accounts = mapper.readValue(content, new TypeReference<List<ClientAccount>>() {
@@ -86,7 +89,7 @@ public class JsonUtils {
         }
 
         String json = mapper.writeValueAsString(accounts);
-        Files.write(fileLocation, json.getBytes(StandardCharsets.UTF_8),
+        Files.write(getFileLocation(), json.getBytes(StandardCharsets.UTF_8),
                 StandardOpenOption.CREATE,
                 StandardOpenOption.TRUNCATE_EXISTING,
                 StandardOpenOption.WRITE);
@@ -96,9 +99,9 @@ public class JsonUtils {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        Files.createDirectories(fileLocation.getParent());
+        Files.createDirectories(getFileLocation().getParent());
 
-        String content = Files.readString(fileLocation);
+        String content = Files.readString(getFileLocation());
         List<ClientAccount> accounts = new ArrayList<>();
 
         if (!content.isEmpty()) {
@@ -125,7 +128,7 @@ public class JsonUtils {
         }
 
         String json = mapper.writeValueAsString(accounts);
-        Files.write(fileLocation, json.getBytes(StandardCharsets.UTF_8),
+        Files.write(getFileLocation(), json.getBytes(StandardCharsets.UTF_8),
                 StandardOpenOption.CREATE,
                 StandardOpenOption.TRUNCATE_EXISTING,
                 StandardOpenOption.WRITE);
@@ -135,7 +138,7 @@ public class JsonUtils {
         DefaultTableModel clientsTableModel = (DefaultTableModel) clientsTable.getModel();
         ObjectMapper mapper = new ObjectMapper();
 
-        List<ClientAccount> accounts = mapper.readValue(new File(String.valueOf(fileLocation)), new TypeReference<List<ClientAccount>>() {
+        List<ClientAccount> accounts = mapper.readValue(new File(String.valueOf(getFileLocation())), new TypeReference<List<ClientAccount>>() {
         });
 
         clientsTableModel.setRowCount(0);
@@ -145,7 +148,7 @@ public class JsonUtils {
                 for (ClientAccount account : accounts) {
                     if (account.getName().startsWith(search)) {
                         Object[] accountA = {account.getClient_id(), account.getName(),
-                                account.getEmail(), account.getPhone(), account.getCity()};
+                            account.getEmail(), account.getPhone(), account.getCity()};
                         clientsTableModel.addRow(accountA);
                     }
                 }
@@ -159,7 +162,7 @@ public class JsonUtils {
                 for (ClientAccount account : accounts) {
                     if (account.getCpf().startsWith(search)) {
                         Object[] accountA = {account.getClient_id(), account.getName(),
-                                account.getEmail(), account.getPhone(), account.getCity()};
+                            account.getEmail(), account.getPhone(), account.getCity()};
                         clientsTableModel.addRow(accountA);
                     }
                 }
@@ -168,7 +171,7 @@ public class JsonUtils {
                 for (ClientAccount account : accounts) {
                     if (account.getCity().startsWith(search)) {
                         Object[] accountA = {account.getClient_id(), account.getName(),
-                                account.getEmail(), account.getPhone(), account.getCity()};
+                            account.getEmail(), account.getPhone(), account.getCity()};
                         clientsTableModel.addRow(accountA);
                     }
                 }
@@ -182,7 +185,7 @@ public class JsonUtils {
 
         clientsTableModel.setRowCount(0);
 
-        List<ClientAccount> accounts = mapper.readValue(new File(String.valueOf(fileLocation)), new TypeReference<List<ClientAccount>>() {
+        List<ClientAccount> accounts = mapper.readValue(new File(String.valueOf(getFileLocation())), new TypeReference<List<ClientAccount>>() {
         });
 
         for (ClientAccount account : accounts) {
@@ -195,7 +198,7 @@ public class JsonUtils {
     public static ClientAccount returnRowClientAsObject(int client_id) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
-        List<ClientAccount> accounts = mapper.readValue(new File(String.valueOf(fileLocation)), new TypeReference<List<ClientAccount>>() {
+        List<ClientAccount> accounts = mapper.readValue(new File(String.valueOf(getFileLocation())), new TypeReference<List<ClientAccount>>() {
         });
 
         ClientAccount client = null;

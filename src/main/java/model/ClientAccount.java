@@ -94,7 +94,7 @@ public class ClientAccount {
             ObjectMapper mapper = new ObjectMapper();
             mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-            Path fileLocation = JsonUtils.fileLocation;
+            Path fileLocation = JsonUtils.getFileLocation();
             Files.createDirectories(fileLocation.getParent());
 
             List<ClientAccount> accounts = new ArrayList<>();
