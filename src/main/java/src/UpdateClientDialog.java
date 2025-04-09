@@ -216,7 +216,7 @@ public class UpdateClientDialog extends javax.swing.JDialog {
         dispose();
 
         try {
-            JsonUtils.updateAccountInJson(updatedClient);
+            JsonUtils.updateClientInJson(updatedClient);
             JOptionPane.showMessageDialog(null, "USUÁRIO EDITADO COM SUCESSO!", "Operação concluída", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(UpdateClientDialog.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,1 +1,17 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Build
 target/
+
+# Arquivos de histórico e temporários
+jshell.history
+dependency-reduced-pom.xml
+*.log
+*.tmp

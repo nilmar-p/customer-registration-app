@@ -2,10 +2,8 @@ package utils;
 
 import javax.swing.*;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,10 +13,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class BackupUtils {
-    private static Path dirBackups = Paths.get("C:\\customer-registration-app\\Backups");
-    private static Path dirClientsJson = Paths.get("C:\\customer-registration-app\\clients.json");
-    private static Path zipFile = dirBackups.resolve("backup.zip");
-
+    private static Path dirBackups = Paths.get("C:\\customer-registration-app\\users", LoginUtils.loggedUser, "backups");
+    private static Path dirClientsJson = Paths.get("C:\\customer-registration-app\\users", LoginUtils.loggedUser, "clients.json");
 
     public static void createBackupFile() {
         try {
@@ -52,9 +48,5 @@ public class BackupUtils {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "ERRO AO CRIAR BACKUP!", "ERRO!", JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    public static void importBackupFile(){
-
     }
 }
