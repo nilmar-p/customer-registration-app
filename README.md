@@ -7,13 +7,10 @@ Includes a basic login system where each user has their own individual database 
 
 ## 🛠️ Technologies Used
 
-- Java 8+
+- Java 23+
 - Swing (Graphical User Interface)
 - JSON (local file-based database)
-- Gson (for JSON parsing)
-- Git & GitHub
-- IDE: IntelliJ IDEA / Eclipse / NetBeans
-
+- Jackson (for JSON parsing)
 ---
 
 ## ✨ Features
@@ -31,7 +28,11 @@ Includes a basic login system where each user has their own individual database 
 
 ## 🚀 How to Run
 
-1. Clone this repository:
+1. Go to the [Releases](https://github.com/nilmar-p/customer-registration-app/releases) section.
+2. Download the latest version: `CustomerRegistrationApp-1.0-SNAPSHOT.jar`
+3. Run the application using the command:
 
 ```bash
-git clone https://github.com/nilmar-p/customer-registration-app.git
+java -jar CustomerRegistrationApp.jar
+
+
