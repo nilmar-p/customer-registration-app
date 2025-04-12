@@ -25,7 +25,7 @@ java -jar CustomerRegistrationApp.jar
 If you'd like to build the project yourself, ensure you have [Apache Maven](https://maven.apache.org/) installed, and run the following command:
 
 ```bash
-mvn clean package
+mvn clean install
 ```
 
 This will create the `.jar` file in the `target` directory.
