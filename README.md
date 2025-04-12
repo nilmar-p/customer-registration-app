@@ -29,3 +29,6 @@ mvn clean install
 ```
 
 This will create the `.jar` file in the `target` directory.
+
+# 📜 License
+[MIT](./LICENSE).
