@@ -14,7 +14,7 @@ Includes a basic login system where each user has their own individual database 
 - ⚙️ Java must be installed and available in your system PATH
 
 ## How to run the app
-1. Download the `.jar` file from the releases section.
+1. Download the `.jar` file from the [releases section](https://github.com/nilmar-p/customer-registration-app/releases)
 2. Run the application using the following command:
 
 ```bash
