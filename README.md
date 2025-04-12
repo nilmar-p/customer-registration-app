@@ -1,5 +1,9 @@
 # 📁 Customer Registration App
 
+![Last Commit](https://img.shields.io/github/last-commit/nilmar-p/customer-registration-app?color=blue)
+![Top Language](https://img.shields.io/github/languages/top/nilmar-p/customer-registration-app)
+![License](https://img.shields.io/github/license/nilmar-p/customer-registration-app)
+
 A simple Java Swing desktop app using a local JSON file for data storage and management.  
 Includes a basic login system where each user has their own individual database of records.
 
