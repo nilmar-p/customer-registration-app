@@ -36,3 +36,8 @@ This will create the `.jar` file in the `target` directory.
 
 # 📜 License
 [MIT](./LICENSE).
+
+![Screenshot (2)](https://github.com/user-attachments/assets/bd95f72b-0996-4c62-91bd-64e6d7d71654)
+
+![Screenshot (3)](https://github.com/user-attachments/assets/977917da-45d7-4484-a38e-a18d0c8da36f)
+
