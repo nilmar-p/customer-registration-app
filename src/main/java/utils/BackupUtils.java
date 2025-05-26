@@ -13,8 +13,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class BackupUtils {
-    private static Path dirBackups = Paths.get("C:\\customer-registration-app\\users", LoginUtils.loggedUser, "backups");
-    private static Path dirClientsJson = Paths.get("C:\\customer-registration-app\\users", LoginUtils.loggedUser, "clients.json");
+    private static Path dirBackups = Paths.get("C:\\customer-registration-app\\users", LoginUtils.getLoggedUser(), "backups");
+    private static Path dirClientsJson = Paths.get("C:\\customer-registration-app\\users", LoginUtils.getLoggedUser(), "clients.json");
 
     public static void createBackupFile() {
         try {

@@ -16,25 +16,27 @@ public class UpdateClientDialog extends javax.swing.JDialog {
 
     private static ClientAccount updatedClient;
 
+    //getters
     public static ClientAccount getUpdatedClient() {
         return updatedClient;
     }
 
+    //methods
     public UpdateClientDialog(javax.swing.JFrame parent, boolean modal) {
         super(parent, modal);
 
         initComponents();
 
-        editClientName.setText(MenuScreen.name);
-        editClientCPF.setText(MenuScreen.cpf);
-        editClientEmail.setText(MenuScreen.email);
-        editClientPhone.setText(MenuScreen.phone);
+        editClientName.setText(MenuScreen.getClientName());
+        editClientCPF.setText(MenuScreen.getCpf());
+        editClientEmail.setText(MenuScreen.getEmail());
+        editClientPhone.setText(MenuScreen.getPhone());
 
-        editClientStreet.setText(MenuScreen.street);
-        editClientNeighborhood.setText(MenuScreen.neighborhood);
-        editClientHouseNumber.setText(MenuScreen.houseNumber);
-        editClientCEP.setText(MenuScreen.cep);
-        editClientCity.setText(MenuScreen.city);
+        editClientStreet.setText(MenuScreen.getStreet());
+        editClientNeighborhood.setText(MenuScreen.getNeighborhood());
+        editClientHouseNumber.setText(MenuScreen.getHouseNumber());
+        editClientCEP.setText(MenuScreen.getCep());
+        editClientCity.setText(MenuScreen.getCity());
 
         setLocationRelativeTo(null);
     }
@@ -189,7 +191,7 @@ public class UpdateClientDialog extends javax.swing.JDialog {
 
         try {
             updatedClient = new ClientAccount(
-                    MenuScreen.client_id,
+                    MenuScreen.getClient_id(),
                     this.editClientName.getText().trim().toUpperCase(),
                     this.editClientCPF.getText().trim().toUpperCase(),
                     this.editClientEmail.getText().trim().toUpperCase(),
@@ -247,7 +249,7 @@ public class UpdateClientDialog extends javax.swing.JDialog {
 
         editClientGender.setModel(cbm);
 
-        editClientGender.setSelectedItem(MenuScreen.gender);
+        editClientGender.setSelectedItem(MenuScreen.getGender());
     }//GEN-LAST:event_formWindowOpened
 
     /**

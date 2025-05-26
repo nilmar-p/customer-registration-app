@@ -13,16 +13,16 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import enums.Gender;
-
 import model.ClientAccount;
 
 public class JsonUtils {
 
+    //getter
     public static Path getFileLocation() {
-        return Paths.get("C:\\customer-registration-app\\users", LoginUtils.loggedUser, "clients.json");
+        return Paths.get("C:\\customer-registration-app\\users", LoginUtils.getLoggedUser(), "clients.json");
     }
 
+    //methods
     public static void saveClient(ClientAccount newClient) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 

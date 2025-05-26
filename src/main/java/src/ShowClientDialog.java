@@ -10,18 +10,18 @@ public class ShowClientDialog extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         
-        showClientName.setText(MenuScreen.name);
-        showClientCPF.setText(MenuScreen.cpf);
-        showClientEmail.setText(MenuScreen.email);
-        showClientPhone.setText(MenuScreen.phone);
+        showClientName.setText(MenuScreen.getClientName());
+        showClientCPF.setText(MenuScreen.getCpf());
+        showClientEmail.setText(MenuScreen.getEmail());
+        showClientPhone.setText(MenuScreen.getPhone());
 
-        showClientGender.setText(MenuScreen.gender.toString());
+        showClientGender.setText(MenuScreen.getGender().toString());
 
-        showClientStreet.setText(MenuScreen.street);
-        showClientNeighborhood.setText(MenuScreen.neighborhood);
-        showClientHouseNumber.setText(MenuScreen.houseNumber);
-        showClientCEP.setText(MenuScreen.cep);
-        showClientCity.setText(MenuScreen.city);
+        showClientStreet.setText(MenuScreen.getStreet());
+        showClientNeighborhood.setText(MenuScreen.getNeighborhood());
+        showClientHouseNumber.setText(MenuScreen.getHouseNumber());
+        showClientCEP.setText(MenuScreen.getCep());
+        showClientCity.setText(MenuScreen.getCity());
     }
 
     /**

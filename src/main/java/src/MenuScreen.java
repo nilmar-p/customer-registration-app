@@ -19,26 +19,111 @@ import utils.LoginUtils;
 
 public class MenuScreen extends javax.swing.JFrame {
 
-    public static int client_id;
+    private static int client_id;
 
-    public static String name;
-    public static String cpf;
-    public static String email;
-    public static String phone;
+    private static String name;
+    private static String cpf;
+    private static String email;
+    private static String phone;
 
-    public static Gender gender;
+    private static Gender gender;
 
-    public static String street;
-    public static String neighborhood;
-    public static String houseNumber;
-    public static String cep;
-    public static String city;
+    private static String street;
+    private static String neighborhood;
+    private static String houseNumber;
+    private static String cep;
+    private static String city;
 
     public static JTable table;
 
+    //getters and setters
+    public static int getClient_id() {
+        return client_id;
+    }
+
+    public static String getClientName() {
+        return name;
+    }
+
+    public static String getCpf() {
+        return cpf;
+    }
+
+    public static String getEmail() {
+        return email;
+    }
+
+    public static String getPhone() {
+        return phone;
+    }
+
+    public static Gender getGender() {
+        return gender;
+    }
+
+    public static String getStreet() {
+        return street;
+    }
+
+    public static String getNeighborhood() {
+        return neighborhood;
+    }
+
+    public static String getHouseNumber() {
+        return houseNumber;
+    }
+
+    public static String getCep() {
+        return cep;
+    }
+
+    public static String getCity() {
+        return city;
+    }
+
+    public static void setClient_id(int client_id) {
+        MenuScreen.client_id = client_id;
+    }
+
+    public static void setClientName(String name) {
+        MenuScreen.name = name;
+    }
+
+    public static void setCpf(String cpf) {
+        MenuScreen.cpf = cpf;
+    }
+
+    public static void setEmail(String email) {
+        MenuScreen.email = email;
+    }
+
+    public static void setPhone(String phone) {
+        MenuScreen.phone = phone;
+    }
+
+    public static void setGender(Gender gender) {
+        MenuScreen.gender = gender;
+    }
+
+    public static void setNeighborhood(String neighborhood) {
+        MenuScreen.neighborhood = neighborhood;
+    }
+
+    public static void setHouseNumber(String houseNumber) {
+        MenuScreen.houseNumber = houseNumber;
+    }
+
+    public static void setCep(String cep) {
+        MenuScreen.cep = cep;
+    }
+
+    public static void setCity(String city) {
+        MenuScreen.city = city;
+    }
+
     public MenuScreen() {
         initComponents();
-        
+
         setLocationRelativeTo(null);
 
         Path fileLocation = JsonUtils.getFileLocation();
@@ -174,7 +259,7 @@ public class MenuScreen extends javax.swing.JFrame {
         });
 
         loggedUserLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        loggedUserLabel.setText(LoginUtils.loggedUser);
+        loggedUserLabel.setText(LoginUtils.getLoggedUser());
         loggedUserLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         userIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
@@ -460,10 +545,18 @@ public class MenuScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "Deseja sair?", "Confirmação", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(null, "OPERAÇÃO CANCELADA!", "Operação cancelada", JOptionPane.INFORMATION_MESSAGE);
+
+            return;
+        }
+
         LoginScreen loginScreen = new LoginScreen();
 
         loginScreen.setVisible(true);
         dispose();
+
+        JOptionPane.showMessageDialog(null, "DESLOGADO COM SUCESSO!", "Operação concluída", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

@@ -13,7 +13,16 @@ import model.UserAccount;
 
 public class LoginUtils {
 
-    public static String loggedUser;
+    private static String loggedUser;
+
+    public static String getLoggedUser() {
+        return loggedUser;
+    }
+
+    public static void setLoggedUser(String loggedUser) {
+        LoginUtils.loggedUser = loggedUser;
+    }
+    
 
     public static boolean createAccount(UserAccount newAccount) throws IOException {
         String userName = newAccount.getUserName();
