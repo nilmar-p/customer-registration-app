@@ -13,6 +13,8 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import enums.Gender;
+
 import model.ClientAccount;
 
 public class JsonUtils {
@@ -66,6 +68,21 @@ public class JsonUtils {
         }
 
         return true;
+    }
+
+    public static boolean isCpfValid(ClientAccount updatedClient) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        List<ClientAccount> accounts = mapper.readValue(new File(String.valueOf(getFileLocation())), new TypeReference<List<ClientAccount>>() {
+        });
+
+        for (ClientAccount account : accounts) {
+            if (account.getCpf().equals(updatedClient.getCpf()) && account.getClient_id() == updatedClient.getClient_id()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static void deleteClientFromJson(int client_id) throws IOException {

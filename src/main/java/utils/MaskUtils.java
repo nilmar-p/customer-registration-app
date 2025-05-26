@@ -6,7 +6,7 @@ import model.ClientAccount;
 
 public class MaskUtils {
 
-    public static boolean isFormValid(ClientAccount client) throws IOException {
+    public static boolean isFormValid(ClientAccount client, boolean isUpdate) throws IOException {
 
         // Empty filds check
         if (client.getName().isEmpty() || client.getCpf().isEmpty() || client.getEmail().isEmpty()
@@ -26,9 +26,16 @@ public class MaskUtils {
             return false;
         }
 
-        if (!JsonUtils.isCpfValid(client.getCpf())) {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO: CPF já cadastrado!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            return false;
+        if (isUpdate) {
+            if (!JsonUtils.isCpfValid(client)) {
+                JOptionPane.showMessageDialog(null, "ATENÇÃO: CPF já cadastrado!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } else {
+            if (!JsonUtils.isCpfValid(client.getCpf())) {
+                JOptionPane.showMessageDialog(null, "ATENÇÃO: CPF já cadastrado!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
         }
 
         // Phone check

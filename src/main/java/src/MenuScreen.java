@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import enums.Gender;
+
 import model.ClientAccount;
 import utils.BackupUtils;
 import utils.JsonUtils;
@@ -24,7 +26,7 @@ public class MenuScreen extends javax.swing.JFrame {
     public static String email;
     public static String phone;
 
-    public static String gender;
+    public static Gender gender;
 
     public static String street;
     public static String neighborhood;

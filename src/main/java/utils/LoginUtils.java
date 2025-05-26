@@ -70,7 +70,7 @@ public class LoginUtils {
             return false;
         }
 
-        JOptionPane.showMessageDialog(null, "Login realizado com sucesso!", "ERRO!", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Login realizado com sucesso!", "SUCESSO!", JOptionPane.INFORMATION_MESSAGE);
 
         loggedUser = user;
         return true;

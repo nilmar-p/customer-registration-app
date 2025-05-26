@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import utils.JsonUtils;
 
+import enums.Gender;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,7 +27,7 @@ public class ClientAccount {
     @JsonProperty("phone")
     protected String phone;
     @JsonProperty("gender")
-    protected String gender;
+    protected Gender gender;
     @JsonProperty("street")
     protected String street;
     @JsonProperty("neighborhood")
@@ -43,7 +45,7 @@ public class ClientAccount {
             @JsonProperty("cpf") String cpf,
             @JsonProperty("email") String email,
             @JsonProperty("phone") String phone,
-            @JsonProperty("gender") String gender,
+            @JsonProperty("gender") Gender gender,
             @JsonProperty("street") String street,
             @JsonProperty("neighborhood") String neighborhood,
             @JsonProperty("houseNumber") String houseNumber,
@@ -51,8 +53,8 @@ public class ClientAccount {
             @JsonProperty("city") String city
     ) throws IOException {
         this.client_id = generateUniqueClientId();
-        this.name = name;
-        this.cpf = cpf;
+        this.name = name.trim().isEmpty() ? "NOME VAZIO" : name.trim().toUpperCase();
+        this.cpf = cpf.trim().isEmpty() ? "CPF VAZIO" : cpf.trim().toUpperCase();
         this.email = email;
         this.phone = phone;
         this.gender = gender;
@@ -69,7 +71,7 @@ public class ClientAccount {
             String cpf,
             String email,
             String phone,
-            String gender,
+            Gender gender,
             String street,
             String neighborhood,
             String houseNumber,
@@ -162,11 +164,11 @@ public class ClientAccount {
         this.phone = phone;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

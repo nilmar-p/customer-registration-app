@@ -8,6 +8,10 @@ import model.ClientAccount;
 import utils.JsonUtils;
 import utils.MaskUtils;
 
+import enums.Gender;
+
+import javax.swing.DefaultComboBoxModel;
+
 public class UpdateClientDialog extends javax.swing.JDialog {
 
     private static ClientAccount updatedClient;
@@ -25,12 +29,6 @@ public class UpdateClientDialog extends javax.swing.JDialog {
         editClientCPF.setText(MenuScreen.cpf);
         editClientEmail.setText(MenuScreen.email);
         editClientPhone.setText(MenuScreen.phone);
-
-        if ("Feminino".equals(MenuScreen.gender)) {
-            editClientGender.setSelectedIndex(0);
-        } else {
-            editClientGender.setSelectedIndex(1);
-        }
 
         editClientStreet.setText(MenuScreen.street);
         editClientNeighborhood.setText(MenuScreen.neighborhood);
@@ -74,6 +72,11 @@ public class UpdateClientDialog extends javax.swing.JDialog {
         setMinimumSize(new java.awt.Dimension(650, 370));
         setResizable(false);
         setSize(new java.awt.Dimension(650, 370));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(0, 102, 153));
@@ -89,7 +92,6 @@ public class UpdateClientDialog extends javax.swing.JDialog {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, 50));
 
         editClientGender.setBackground(new java.awt.Color(0, 102, 153));
-        editClientGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feminino", "Masculino" }));
         editClientGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editClientGenderActionPerformed(evt);
@@ -185,8 +187,6 @@ public class UpdateClientDialog extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        String gender = (String) editClientGender.getSelectedItem();
-
         try {
             updatedClient = new ClientAccount(
                     MenuScreen.client_id,
@@ -194,7 +194,9 @@ public class UpdateClientDialog extends javax.swing.JDialog {
                     this.editClientCPF.getText().trim().toUpperCase(),
                     this.editClientEmail.getText().trim().toUpperCase(),
                     this.editClientPhone.getText().trim().toUpperCase(),
-                    gender,
+                    
+                    (Gender) this.editClientGender.getSelectedItem(),
+                    
                     this.editClientStreet.getText().trim().toUpperCase(),
                     this.editClientNeighborhood.getText().trim().toUpperCase(),
                     this.editClientHouseNumber.getText().trim().toUpperCase(),
@@ -206,7 +208,7 @@ public class UpdateClientDialog extends javax.swing.JDialog {
         }
 
         try {
-            if (!MaskUtils.isFormValid(updatedClient)) {
+            if (!MaskUtils.isFormValid(updatedClient, true)) {
                 return;
             }
         } catch (IOException ex) {
@@ -239,6 +241,14 @@ public class UpdateClientDialog extends javax.swing.JDialog {
     private void editClientGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editClientGenderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editClientGenderActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        DefaultComboBoxModel cbm = new DefaultComboBoxModel(Gender.values());
+
+        editClientGender.setModel(cbm);
+
+        editClientGender.setSelectedItem(MenuScreen.gender);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

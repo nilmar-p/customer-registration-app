@@ -9,6 +9,10 @@ import model.ClientAccount;
 import utils.JsonUtils;
 import utils.MaskUtils;
 
+import enums.Gender;
+
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author Administrator
@@ -60,6 +64,11 @@ public class SaveClientDialog extends javax.swing.JDialog {
         setTitle("Salvar cliente");
         setMinimumSize(new java.awt.Dimension(650, 370));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(0, 102, 153));
@@ -75,7 +84,6 @@ public class SaveClientDialog extends javax.swing.JDialog {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, 50));
 
         clientGender.setBackground(new java.awt.Color(0, 102, 153));
-        clientGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feminino", "Masculino" }));
         clientGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clientGenderActionPerformed(evt);
@@ -196,7 +204,6 @@ public class SaveClientDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String gender = (String) clientGender.getSelectedItem();
 
         ClientAccount client = null;
 
@@ -206,7 +213,7 @@ public class SaveClientDialog extends javax.swing.JDialog {
                     this.clientCPF.getText().trim().toUpperCase(),
                     this.clientEmail.getText().trim().toUpperCase(),
                     this.clientPhone.getText().trim().toUpperCase(),
-                    gender,
+                    (Gender) this.clientGender.getSelectedItem(),
                     this.clientStreet.getText().trim().toUpperCase(),
                     this.clientNeighborhood.getText().trim().toUpperCase(),
                     this.clientHouseNumber.getText().trim().toUpperCase(),
@@ -219,7 +226,7 @@ public class SaveClientDialog extends javax.swing.JDialog {
         }
 
         try {
-            if (!MaskUtils.isFormValid(client)) {
+            if (!MaskUtils.isFormValid(client, false)) {
                 return;
             }
         } catch (IOException ex) {
@@ -289,6 +296,12 @@ public class SaveClientDialog extends javax.swing.JDialog {
     private void clientCEPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_clientCEPFocusGained
 //        MaskUtils.maskRemove(clientCEP);
     }//GEN-LAST:event_clientCEPFocusGained
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        DefaultComboBoxModel cbm = new DefaultComboBoxModel(Gender.values());
+
+        clientGender.setModel(cbm);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

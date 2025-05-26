@@ -3,6 +3,7 @@ package src;
 import utils.LoginUtils;
 
 public class LoginScreen extends javax.swing.JFrame {
+
     public LoginScreen() {
         initComponents();
         setLocationRelativeTo(null);
@@ -109,7 +110,7 @@ public class LoginScreen extends javax.swing.JFrame {
         char[] passwordChars = passwordField.getPassword();
         String password = new String(passwordChars);
 
-        if (LoginUtils.areLoginCredentialsValid(user, password)) {            
+        if (LoginUtils.areLoginCredentialsValid(user, password)) {
             MenuScreen menu = new MenuScreen();
 
             menu.setVisible(true);
@@ -119,7 +120,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         SignUpScreen signUpScreen = new SignUpScreen();
-        
+
         signUpScreen.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

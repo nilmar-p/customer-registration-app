@@ -15,7 +15,7 @@ public class ShowClientDialog extends javax.swing.JDialog {
         showClientEmail.setText(MenuScreen.email);
         showClientPhone.setText(MenuScreen.phone);
 
-        showClientGender.setText(MenuScreen.gender);
+        showClientGender.setText(MenuScreen.gender.toString());
 
         showClientStreet.setText(MenuScreen.street);
         showClientNeighborhood.setText(MenuScreen.neighborhood);
